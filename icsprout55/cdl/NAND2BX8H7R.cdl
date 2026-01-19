@@ -1,0 +1,9 @@
+.SUBCKT NAND2BX8H7R AN B VDD VSS Y
+*.PININFO AN:I B:I Y:O VDD:B VSS:B
+MMM4 net16 AN VDD VDD pm1p2_svt_lp W=620n L=60n m=1
+MMM1 Y B VDD VDD pm1p2_svt_lp W=1.52u L=60n m=1
+MMM0 Y net16 VDD VDD pm1p2_svt_lp W=1.52u L=60n m=1
+MMM5 net16 AN VSS VSS nm1p2_svt_lp W=500n L=60n m=1
+MMM2 net20 net16 VSS VSS nm1p2_svt_lp W=1.2u L=60n m=1
+MMM3 Y B net20 VSS nm1p2_svt_lp W=1.2u L=60n m=1
+.ENDS

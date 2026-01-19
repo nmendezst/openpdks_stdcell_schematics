@@ -1,0 +1,5 @@
+.SUBCKT BUFX8H7R A VDD VSS Y
+*.PININFO A:I Y:O VDD:B VSS:B
+XXI0 A VDD VSS net4 / INV pl=6e-08 pw=6.2e-07 nl=6e-08 nw=5e-07
+XXI1 net4 VDD VSS Y / INV pl=6e-08 pw=1.52e-06 nl=6e-08 nw=1.2e-06
+.ENDS

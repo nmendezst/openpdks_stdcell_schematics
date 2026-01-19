@@ -1,0 +1,15 @@
+.SUBCKT EDFFQX0P5H7R CK D E Q VDD VSS
+*.PININFO CK:I D:I E:I Q:O VDD:B VSS:B
+XXI18 net32 net24 net030 net33 VDD VSS / TG pl=60n pw=280n nl=60n nw=200n
+XXI14 net46 net24 net32 VDD VSS net33 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI17 D E net057 VDD VSS net030 / TSINV pl=60n pw=280n nl=60n nw=200n
+XXI19 net9 net057 E VDD VSS net030 / TSINV pl=60n pw=280n nl=60n nw=200n
+XXI9 net46 net24 net32 VDD VSS net25 / TSINV pl=60n pw=280n nl=60n nw=200n
+XXI15 net9 net32 net24 VDD VSS net25 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI20 E VDD VSS net057 / INV pl=60n pw=280n nl=60n nw=200n
+XXI7 net33 VDD VSS net46 / INV pl=60n pw=280n nl=60n nw=200n
+XXI13 net32 VDD VSS net24 / INV pl=60n pw=280n nl=60n nw=200n
+XXI12 net25 VDD VSS Q / INV pl=60n pw=280n nl=60n nw=200n
+XXI10 net25 VDD VSS net9 / INV pl=60n pw=280n nl=60n nw=200n
+XXI4 CK VDD VSS net32 / INV pl=60n pw=280n nl=60n nw=200n
+.ENDS

@@ -1,0 +1,123 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(11, 3) node [nmos, bulk] (MNM0) {MNM0} node [above right] {\tiny {W=300n L=60n}}
+	(11, 1) node [nmos, bulk] (MNM3) {MNM3} node [above right] {\tiny {W=300n L=60n}}
+	(8, 1) node [nmos, bulk] (MNM2) {MNM2} node [above right] {\tiny {W=300n L=60n}}
+	(8, 3) node [nmos, bulk] (MNM1) {MNM1} node [above right] {\tiny {W=300n L=60n}}
+	(8, 5) node [pmos, bulk] (MPM1) {MPM1} node [above right] {\tiny {W=380n L=60n}}
+	(5, 7) node [pmos, bulk] (MPM2) {MPM2} node [above right] {\tiny {W=380n L=60n}}
+	(8, 7) node [pmos, bulk] (MPM3) {MPM3} node [above right] {\tiny {W=380n L=60n}}
+	(5, 5) node [pmos, bulk] (MPM0) {MPM0} node [above right] {\tiny {W=380n L=60n}}
+	(14, 4) node [ieeestd not port] (XXI1) {XXI1} node [above right, align=left, font=\tiny, outer sep=3pt] {pw=11.4e-07 pl=6e-08 \\ nw=9e-07 nl=6e-08}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(MNM0.D) node [above]	{net10}
+	(MNM0.G) node [left]	{B0}
+	(MNM0.S) node [below]	{net34}
+	(MNM0.bulk) node [right]	{VSS}
+	(MNM3.D) node [above]	{net34}
+	(MNM3.G) node [left]	{A0}
+	(MNM3.S) node [below]	{VSS}
+	(MNM3.bulk) node [right]	{VSS}
+	(MNM2.D) node [above]	{net34}
+	(MNM2.G) node [left]	{A1}
+	(MNM2.S) node [below]	{VSS}
+	(MNM2.bulk) node [right]	{VSS}
+	(MNM1.D) node [above]	{net10}
+	(MNM1.G) node [left]	{B1}
+	(MNM1.S) node [below]	{net34}
+	(MNM1.bulk) node [right]	{VSS}
+	(MPM1.D) node [below]	{net10}
+	(MPM1.G) node [left]	{B1}
+	(MPM1.S) node [above]	{net21}
+	(MPM1.bulk) node [right]	{VDD}
+	(MPM2.D) node [below]	{net13}
+	(MPM2.G) node [left]	{A0}
+	(MPM2.S) node [above]	{VDD}
+	(MPM2.bulk) node [right]	{VDD}
+	(MPM3.D) node [below]	{net21}
+	(MPM3.G) node [left]	{B0}
+	(MPM3.S) node [above]	{VDD}
+	(MPM3.bulk) node [right]	{VDD}
+	(MPM0.D) node [below]	{net10}
+	(MPM0.G) node [left]	{A1}
+	(MPM0.S) node [above]	{net13}
+	(MPM0.bulk) node [right]	{VDD}
+	(XXI1.in) node [left]	{net10}
+	(XXI1.out) node [right]	{Y}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+	
+	(MPM0.G) |- (MNM2.G)
+	(MPM1.G) |- (MNM1.G)
+	
+	(MNM3.G) --++(-1,0) |- ++(-5,8) |- (MPM2.G)
+	(MNM0.G) |- ++(-3,7) |- (MPM3.G)
+	
+	(MPM0.G |- MNM2.G) to [short,*-o] ++(-4,0) node [left] {A1}
+	(MNM1.G) to [short,*-o] ++(-7,0) node [left] {B1}
+	
+	(MPM2.G) --++(0,2) to [short,*-o] ++(-4,0) node [left] {A0}
+	(MPM3.G) --++(0,3) to [short,*-o] ++(-7,0) node [left] {B0}
+	
+	(MPM2.D) -- (MPM0.S)
+	(MPM3.D) -- (MPM1.S)
+	(MPM1.D) -- (MNM1.D)
+	(MNM1.S) -- (MNM2.D)
+	
+	coordinate (NET10) at ($(MPM1.D)!0.5!(MNM1.D)$)
+	(NET10) to [short,*-] (XXI1.in)
+	(MPM0.D) |- (NET10)
+	(MNM0.D) to [short,-*] (MNM0.D |- NET10)
+	
+	(MNM0.S) -- (MNM3.D)
+	coordinate (NET34) at ($(MNM1.S)!0.5!(MNM2.D)$)
+	coordinate (NET34B) at ($(MNM0.S)!0.5!(MNM3.D)$)
+	(NET34) to [short,*-*] (NET34B)
+	
+	(XXI1.out) to [short,-o] ++(2,0) node [right] {Y}
+	
+	(MPM2.bulk) to [short,-*] ++(0,0.27)
+	(MPM3.bulk) to [short,-*] ++(0,0.27)	
+	(MPM0.bulk) --++(0.5,0) node [vdd]{}
+	(MPM1.bulk) --++(0.5,0) node [vdd]{}
+	
+	(MNM1.bulk) --++(0.5,0) node [ground]{}
+	(MNM0.bulk) --++(0.5,0) node [ground]{}
+	(MNM2.bulk) to [short,-*] ++(0,-0.27)
+	(MNM3.bulk) to [short,-*] ++(0,-0.27)
+
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(MNM3.S) node [ground] {}
+	(MNM2.S) node [ground] {}
+	(MPM2.S) node [vdd] (VDD) {VDD}
+	(MPM3.S) node [vdd] (VDD) {VDD}
+	(XXI1.up) node [vdd] (VDD) {VDD}
+	(XXI1.down) node [ground] {}
+;
+
+\end{circuitikz}

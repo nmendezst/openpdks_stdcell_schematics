@@ -1,0 +1,10 @@
+.SUBCKT ICGX2H7R CK E ECK VDD VSS
+*.PININFO CK:I E:I ECK:O VDD:B VSS:B
+XXI1 net6 CK VDD VSS net14 / NAND2 pl=60n pw=200n nl=60n nw=220n
+XXI6 CK VDD VSS net8 / INV pl=60n pw=280n nl=60n nw=200n
+XXI2 net9 VDD VSS net6 / INV pl=60n pw=280n nl=60n nw=200n
+XXI5 net8 VDD VSS net11 / INV pl=60n pw=280n nl=60n nw=200n
+XXI0 net14 VDD VSS ECK / INV pl=60n pw=400n nl=60n nw=280n
+XXI3 E net8 net11 VDD VSS net9 / TSINV pl=60n pw=320n nl=60n nw=200n
+XXI4 net6 net11 net8 VDD VSS net9 / TSINV pl=60n pw=150n nl=60n nw=150n
+.ENDS

@@ -1,0 +1,23 @@
+.SUBCKT SDFFRX1H7R CK D Q QN RN SE SI VDD VSS
+*.PININFO CK:I D:I RN:I SE:I SI:I Q:O QN:O VDD:B VSS:B
+MNM3 net46 net33 VSS VSS nm1p2_svt_lp W=220n L=60n m=1
+MNM2 net099 r VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MNM1 net35 net0146 VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MNM0 net099 cn net35 VSS nm1p2_svt_lp W=150n L=60n m=1
+MPM3 net46 net33 net54 VDD pm1p2_svt_lp W=300n L=60n m=1
+MPM2 net099 c net67 VDD pm1p2_svt_lp W=150n L=60n m=1
+MPM1 net67 net0146 net54 VDD pm1p2_svt_lp W=150n L=60n m=1
+MPM0 net54 r VDD VDD pm1p2_svt_lp W=200n L=60n m=1
+XI2 D sen SE VDD VSS net076 / TSINV pl=60n pw=280n nl=60n nw=240n
+XI1 SI SE sen VDD VSS net076 / TSINV pl=60n pw=250n nl=60n nw=200n
+XI0 net46 c cn VDD VSS net33 / TSINV pl=60n pw=150n nl=60n nw=150n
+XI4 cn c net076 net33 VDD VSS / TG pl=60n pw=300n nl=60n nw=220n
+XI3 c cn net46 net099 VDD VSS / TG pl=60n pw=300n nl=60n nw=220n
+XI11 CK VDD VSS cn / INV pl=60n pw=280n nl=60n nw=200n
+XI10 net099 VDD VSS net0146 / INV pl=60n pw=280n nl=60n nw=240n
+XI9 cn VDD VSS c / INV pl=60n pw=280n nl=60n nw=200n
+XI8 net0146 VDD VSS Q / INV pl=60n pw=340n nl=60n nw=240n
+XI7 RN VDD VSS r / INV pl=60n pw=280n nl=60n nw=200n
+XI6 net099 VDD VSS QN / INV pl=60n pw=340n nl=60n nw=240n
+XI5 SE VDD VSS sen / INV pl=60n pw=280n nl=60n nw=200n
+.ENDS

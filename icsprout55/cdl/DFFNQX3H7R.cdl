@@ -1,0 +1,12 @@
+.SUBCKT DFFNQX3H7R CKN D Q VDD VSS
+*.PININFO CKN:I D:I Q:O VDD:B VSS:B
+XXI9 net73 net76 net71 VDD VSS net64 / TSINV pl=60n pw=190n nl=60n nw=150n
+XXI6 D net71 net76 VDD VSS net68 / TSINV pl=60n pw=220n nl=60n nw=175n
+XXI15 net61 net71 net76 VDD VSS net64 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI14 net73 net76 net71 VDD VSS net68 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI4 CKN VDD VSS net76 / INV pl=6E-08 pw=2.1E-07 nl=6E-08 nw=1.7E-07
+XXI7 net68 VDD VSS net73 / INV pl=60n pw=205n nl=60n nw=165n
+XXI13 net76 VDD VSS net71 / INV pl=6E-08 pw=2.1E-07 nl=6E-08 nw=1.7E-07
+XXI12 net64 VDD VSS Q / INV pl=60n pw=570n nl=60n nw=450n
+XXI10 net64 VDD VSS net61 / INV pl=60n pw=230n nl=60n nw=185n
+.ENDS

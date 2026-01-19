@@ -1,0 +1,7 @@
+.SUBCKT NOR2 A B VDD VSS Y
+*.PININFO A:I B:I Y:O VDD:B VSS:B
+MMN0 Y B VSS VSS nm1p2_svt_lp W=nw L=nl m=1
+MMN2 Y A VSS VSS nm1p2_svt_lp W=nw L=nl m=1
+MMP0 Y B net018 VDD pm1p2_svt_lp W=pw L=pl m=1
+MMP2 net018 A VDD VDD pm1p2_svt_lp W=pw L=pl m=1
+.ENDS

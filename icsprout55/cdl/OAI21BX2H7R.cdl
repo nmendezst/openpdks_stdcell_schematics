@@ -1,0 +1,10 @@
+.SUBCKT OAI21BX2H7R A0 A1 B0N VDD VSS Y
+*.PININFO A0:I A1:I B0N:I Y:O VDD:B VSS:B
+MMNM2 Y net30 net17 VSS nm1p2_svt_lp W=300n L=60n m=1
+MNM1 net17 A1 VSS VSS nm1p2_svt_lp W=300n L=60n m=1
+MNM0 net17 A0 VSS VSS nm1p2_svt_lp W=300n L=60n m=1
+MPM1 Y A1 net12 VDD pm1p2_svt_lp W=380n L=60n m=1
+MPM2 net12 A0 VDD VDD pm1p2_svt_lp W=380n L=60n m=1
+MPM0 Y net30 VDD VDD pm1p2_svt_lp W=380n L=60n m=1
+XXI0 B0N VDD VSS net30 / INV pl=6e-08 pw=1.9e-07 nl=6e-08 nw=1.5e-07
+.ENDS

@@ -1,0 +1,16 @@
+.SUBCKT SDFFTRQX3H7R CK D Q RN SE SI VDD VSS
+*.PININFO CK:I D:I RN:I SE:I SI:I Q:O VDD:B VSS:B
+XI3 net46 c cn VDD VSS net33 / TSINV pl=60n pw=150n nl=60n nw=150n
+XI4 SI SE sen VDD VSS net046 / TSINV pl=60n pw=250n nl=60n nw=200n
+XI5 net046 cn c VDD VSS net33 / TSINV pl=60n pw=360n nl=60n nw=260n
+XI6 net9 cn c VDD VSS net25 / TSINV pl=60n pw=150n nl=60n nw=150n
+XI7 SE VDD VSS sen / INV pl=60n pw=340n nl=60n nw=240n
+XI8 net33 VDD VSS net46 / INV pl=60n pw=360n nl=60n nw=260n
+XI9 cn VDD VSS c / INV pl=60n pw=340n nl=60n nw=240n
+XI10 net25 VDD VSS Q / INV pl=60n pw=600n nl=60n nw=420n
+XI11 net25 VDD VSS net9 / INV pl=60n pw=360n nl=60n nw=260n
+XI12 CK VDD VSS cn / INV pl=60n pw=340n nl=60n nw=240n
+XI2 D RN VDD VSS net034 / NAND2 pl=60n pw=340n nl=60n nw=270n
+XI0 c cn net46 net25 VDD VSS / TG pl=60n pw=360n nl=60n nw=260n
+XI1 sen SE net034 net046 VDD VSS / TG pl=60n pw=360n nl=60n nw=260n
+.ENDS

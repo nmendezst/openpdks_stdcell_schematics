@@ -1,0 +1,7 @@
+.SUBCKT DLY4X2H7R A VDD VSS Y
+*.PININFO A:I Y:O VDD:B VSS:B
+XI3 net013 VDD VSS Y / INV pl=60n pw=380n nl=60n nw=190n
+XI2 net014 VDD VSS net013 / INV pl=240n pw=190n nl=240n nw=150n
+XI1 net015 VDD VSS net014 / INV pl=240n pw=190n nl=240n nw=150n
+XI0 A VDD VSS net015 / INV pl=60n pw=190n nl=60n nw=150n
+.ENDS

@@ -1,0 +1,9 @@
+.SUBCKT TBUFX0P5H7R A OE VDD VSS Y
+*.PININFO A:I OE:I Y:O VDD:B VSS:B
+MNM0 net18 net39 VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MNM1 Y OE net18 VSS nm1p2_svt_lp W=150n L=60n m=1
+MPM0 Y OEN net17 VDD pm1p2_svt_lp W=190n L=60n m=1
+MPM1 net17 net39 VDD VDD pm1p2_svt_lp W=190n L=60n m=1
+XI2 OE VDD VSS OEN / INV pl=6e-08 pw=1.9e-07 nl=6e-08 nw=1.5e-07
+XI1 A VDD VSS net39 / INV pl=6e-08 pw=1.9e-07 nl=6e-08 nw=1.5e-07
+.ENDS

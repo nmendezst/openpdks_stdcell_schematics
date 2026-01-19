@@ -1,0 +1,11 @@
+.SUBCKT AOI2BB1X0P5H7R A0N A1N B0 VDD VSS Y
+*.PININFO A0N:I A1N:I B0:I Y:O VDD:B VSS:B
+MMN5 net8 A0N VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMN4 Y B0 VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMN7 Y net8 VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMN6 net8 A1N VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMP4 net8 A1N net13 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMP3 net13 A0N VDD VDD pm1p2_svt_lp W=190n L=60n m=1
+MMP2 Y B0 net12 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMP1 net12 net8 VDD VDD pm1p2_svt_lp W=190n L=60n m=1
+.ENDS

@@ -1,0 +1,12 @@
+.SUBCKT TINVX8H7R A OE VDD VSS Y
+*.PININFO A:I OE:I Y:O VDD:B VSS:B
+MPM0 net031 OE VDD VDD pm1p2_svt_lp W=1.52u L=60n m=1
+MMPM0 Y net031 VDD VDD pm1p2_svt_lp W=1.52u L=60n m=1
+MPM1 net031 net27 VDD VDD pm1p2_svt_lp W=1.52u L=60n m=1
+MNM2 net9 OEN VSS VSS nm1p2_svt_lp W=1.2u L=60n m=1
+MNM0 net9 net27 VSS VSS nm1p2_svt_lp W=1.2u L=60n m=1
+MNM1 Y net9 VSS VSS nm1p2_svt_lp W=1.2u L=60n m=1
+XXI3 OE VDD VSS OEN / INV pl=6E-08 pw=6.2e-07 nl=6E-08 nw=5e-07
+XXI7 A VDD VSS net27 / INV pl=6E-08 pw=1.52e-06 nl=6E-08 nw=1.2e-06
+XXI6 OE OEN net9 net031 VDD VSS / TG pl=6E-08 pw=1.48e-06 nl=6E-08 nw=1.16e-06
+.ENDS

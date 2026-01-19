@@ -1,0 +1,95 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(2, 4) node [nmos, bulk] (MMM5) {MMM5} node [above right] {\tiny {W=2.4u L=60n}}
+	(8, 1) node [nmos, bulk] (MMM2) {MMM2} node [above right] {\tiny {W=2.4u L=60n}}
+	(8, 3) node [nmos, bulk] (MMM3) {MMM3} node [above right] {\tiny {W=2.4u L=60n}}
+	(2, 6) node [pmos, bulk] (MMM4) {MMM4} node [above right] {\tiny {W=3.04u L=60n}}
+	(8, 5) node [pmos, bulk] (MMM1) {MMM1} node [above right] {\tiny {W=3.04u L=60n}}
+	(5, 5) node [pmos, bulk] (MMM0) {MMM0} node [above right] {\tiny {W=3.04u L=60n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(MMM5.D) node [above]	{net16}
+	(MMM5.G) node [left]	{AN}
+	(MMM5.S) node [below]	{VSS}
+	(MMM5.bulk) node [right]	{VSS}
+	(MMM2.D) node [above]	{net20}
+	(MMM2.G) node [left]	{net16}
+	(MMM2.S) node [below]	{VSS}
+	(MMM2.bulk) node [right]	{VSS}
+	(MMM3.D) node [above]	{Y}
+	(MMM3.G) node [left]	{B}
+	(MMM3.S) node [below]	{net20}
+	(MMM3.bulk) node [right]	{VSS}
+	(MMM4.D) node [below]	{net16}
+	(MMM4.G) node [left]	{AN}
+	(MMM4.S) node [above]	{VDD}
+	(MMM4.bulk) node [right]	{VDD}
+	(MMM1.D) node [below]	{Y}
+	(MMM1.G) node [left]	{B}
+	(MMM1.S) node [above]	{VDD}
+	(MMM1.bulk) node [right]	{VDD}
+	(MMM0.D) node [below]	{Y}
+	(MMM0.G) node [left]	{net16}
+	(MMM0.S) node [above]	{VDD}
+	(MMM0.bulk) node [right]	{VDD}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+	(MMM4.D) -- (MMM5.D)
+	coordinate (NET16) at ($(MMM4.D)!0.5!(MMM5.D)$)
+	(NET16) to [short,*-*] (MMM0.G)
+	(MMM4.G) |- (MMM5.G)
+	coordinate (AN) at ($(MMM4.G)!0.5!(MMM5.G)$)
+	(AN) to [short,*-o] ++(-1,0) node [left] {AN}
+	
+	(MMM0.G) |- (MMM2.G)
+	(MMM1.G) |- (MMM3.G)
+	(MMM3.G) to [short,*-o] ++(-7,0) node [left] {B}
+	
+	(MMM1.D) -- (MMM3.D)
+	coordinate (Y) at ($(MMM1.D)!0.5!(MMM3.D)$)
+	(Y) to [short,*-o] ++(2,0) node [right] {Y}
+	(MMM0.D) |- (MMM1.D |- Y)
+	
+	(MMM3.S) -- (MMM2.D)
+	
+	(MMM0.bulk) to [short,-*] ++(0,0.27)
+	(MMM1.bulk) to [short,-*] ++(0,0.27)
+	(MMM4.bulk) to [short,-*] ++(0,0.27)
+	(MMM3.bulk) --++(0.5,0) node [ground] {}
+	(MMM2.bulk) to [short,-*] ++(0,-0.27)
+	(MMM5.bulk) to [short,-*] ++(0,-0.27)
+
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(MMM5.S) node [ground] {}
+	(MMM2.S) node [ground] {}
+	(MMM4.S) node [vdd] (VDD) {VDD}
+	(MMM1.S) node [vdd] (VDD) {VDD}
+	(MMM0.S) node [vdd] (VDD) {VDD}
+;
+
+\end{circuitikz}

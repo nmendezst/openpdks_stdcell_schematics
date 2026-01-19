@@ -1,0 +1,5 @@
+.SUBCKT ANT2H7R VSS VDD A
+** N=3 EP=3 IP=0 FDC=3
+D0 VSS A dio_1p2_np_pw_lp AREA=8.7e-14 PJ=1.18e-06 m=1 l=3e-07 w=2.9e-07 $X=55 $Y=155 $D=163
+D1 A VDD dio_1p2_pp_nw_lp AREA=1.1e-13 PJ=1.35e-06 m=1 l=4e-07 w=2.75e-07 $X=55 $Y=775 $D=164
+.ENDS

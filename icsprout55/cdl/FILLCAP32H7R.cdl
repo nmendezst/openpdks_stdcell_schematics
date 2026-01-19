@@ -1,0 +1,5 @@
+.SUBCKT FILLCAP32H7R VDD VSS
+*.PININFO VDD:B VSS:B
+MMM1 net5 net7 VSS VSS nm1p2_svt_lp W=200n L=5.98u m=1
+MMM0 net7 net5 VDD VDD pm1p2_svt_lp W=300n L=5.98u m=1
+.ENDS

@@ -1,0 +1,7 @@
+.SUBCKT NOR2X12H7R A B VDD VSS Y
+*.PININFO A:I B:I Y:O VDD:B VSS:B
+MNM0 Y B VSS VSS nm1p2_svt_lp W=1.8u L=60n m=1
+MMN0 Y A VSS VSS nm1p2_svt_lp W=1.8u L=60n m=1
+MPM0 Y B net015 VDD pm1p2_svt_lp W=2.28u L=60n m=1
+MMP1 net015 A VDD VDD pm1p2_svt_lp W=2.28u L=60n m=1
+.ENDS

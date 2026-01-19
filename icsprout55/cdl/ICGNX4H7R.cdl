@@ -1,0 +1,10 @@
+.SUBCKT ICGNX4H7R CKN E ECK VDD VSS
+*.PININFO CKN:I E:I ECK:O VDD:B VSS:B
+XXI1 net9 CKN VDD VSS net14 / NOR2 pl=60n pw=360n nl=60n nw=220n
+XXI6 CKN VDD VSS net8 / INV pl=60n pw=280n nl=60n nw=200n
+XXI5 net8 VDD VSS net11 / INV pl=60n pw=280n nl=60n nw=200n
+XXI2 net9 VDD VSS net6 / INV pl=60n pw=280n nl=60n nw=200n
+XXI0 net14 VDD VSS ECK / INV pl=60n pw=800n nl=60n nw=560n
+XXI4 net6 net8 net11 VDD VSS net9 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI3 E net11 net8 VDD VSS net9 / TSINV pl=60n pw=320n nl=60n nw=200n
+.ENDS

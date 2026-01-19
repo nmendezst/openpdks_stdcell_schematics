@@ -1,0 +1,21 @@
+.SUBCKT DFFSRQX1H7R CK D Q RN SN VDD VSS
+*.PININFO CK:I D:I RN:I SN:I Q:O VDD:B VSS:B
+MMN5 net062 SN VSS VSS nm1p2_svt_lp W=190n L=60n m=1
+MMN1 net094 net0108 net36 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMN2 net36 net0144 net062 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMN6 net094 net096 net062 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMN4 net46 net33 net062 VSS nm1p2_svt_lp W=190n L=60n m=1
+MMP4 net094 SN VDD VDD pm1p2_svt_lp W=150n L=60n m=1
+MMP5 net54 net096 VDD VDD pm1p2_svt_lp W=150n L=60n m=1
+MMP2 net67 net0144 net54 VDD pm1p2_svt_lp W=150n L=60n m=1
+MMP1 net094 net24 net67 VDD pm1p2_svt_lp W=150n L=60n m=1
+MMP3 net46 net33 net54 VDD pm1p2_svt_lp W=200n L=60n m=1
+XXI29 net46 net24 net0108 VDD VSS net33 / TSINV pl=6E-08 pw=1.5E-07 nl=6E-08 nw=1.5E-07
+XXI30 D net0108 net24 VDD VSS net33 / TSINV pl=6E-08 pw=2E-07 nl=6E-08 nw=2.1E-07
+XXI32 RN VDD VSS net096 / INV pl=6E-08 pw=1.5E-07 nl=6E-08 nw=1.5E-07
+XXI5 net0144 VDD VSS Q / INV pl=6E-08 pw=2.7E-07 nl=6E-08 nw=2.1E-07
+XXI13 net0108 VDD VSS net24 / INV pl=6E-08 pw=2.1E-07 nl=6E-08 nw=1.7E-07
+XXI10 net094 VDD VSS net0144 / INV pl=6E-08 pw=1.9E-07 nl=6E-08 nw=1.5E-07
+XXI4 CK VDD VSS net0108 / INV pl=6E-08 pw=2.1E-07 nl=6E-08 nw=1.7E-07
+XXI9 net24 net0108 net46 net094 VDD VSS / TG pl=6E-08 pw=1.9E-07 nl=6E-08 nw=1.5E-07
+.ENDS

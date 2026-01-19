@@ -1,0 +1,12 @@
+.SUBCKT TINVX16H7R A OE VDD VSS Y
+*.PININFO A:I OE:I Y:O VDD:B VSS:B
+MNM0 net9 net27 VSS VSS nm1p2_svt_lp W=2.4u L=60n m=1
+MNM1 Y net9 VSS VSS nm1p2_svt_lp W=2.4u L=60n m=1
+MNM2 net9 OEN VSS VSS nm1p2_svt_lp W=2.4u L=60n m=1
+XI2 OE VDD VSS OEN / INV pl=6E-08 pw=1.14e-06 nl=6E-08 nw=9e-07
+XI1 A VDD VSS net27 / INV pl=6E-08 pw=3.04e-06 nl=6E-08 nw=2.4e-06
+MPM2 Y net031 VDD VDD pm1p2_svt_lp W=3.04u L=60n m=1
+MPM0 net031 OE VDD VDD pm1p2_svt_lp W=3.04u L=60n m=1
+MPM1 net031 net27 VDD VDD pm1p2_svt_lp W=3.04u L=60n m=1
+XI0 OE OEN net9 net031 VDD VSS / TG pl=6E-08 pw=2.96e-06 nl=6E-08 nw=2.32e-06
+.ENDS

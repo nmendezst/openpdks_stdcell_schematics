@@ -1,0 +1,135 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(11, 3) node [nmos, bulk] (MNM6) {MNM6} node [above right] {\tiny {W=450n L=60n}}
+	(14, 3) node [nmos, bulk] (MNM5) {MNM5} node [above right] {\tiny {W=450n L=60n}}
+	(14, 1) node [nmos, bulk] (MNM4) {MNM4} node [above right] {\tiny {W=450n L=60n}}
+	(11, 5) node [nmos, bulk] (MNM7) {MNM7} node [above right] {\tiny {W=450n L=60n}}
+	(11, 1) node [nmos, bulk] (MNM0) {MNM0} node [above right] {\tiny {W=450n L=60n}}
+	(8, 7) node [pmos, bulk] (MPM4) {MPM4} node [above right] {\tiny {W=570n L=60n}}
+	(5, 7) node [pmos, bulk] (MMPM1) {MMPM1} node [above right] {\tiny {W=570n L=60n}}
+	(11, 7) node [pmos, bulk] (MPM7) {MPM7} node [above right] {\tiny {W=570n L=60n}}
+	(5, 9) node [pmos, bulk] (MPM6) {MPM6} node [above right] {\tiny {W=570n L=60n}}
+	(8, 9) node [pmos, bulk] (MPM5) {MPM5} node [above right] {\tiny {W=570n L=60n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(MNM6.D) node [above]	{net31}
+	(MNM6.G) node [left]	{B0}
+	(MNM6.S) node [below]	{net39}
+	(MNM6.bulk) node [right]	{VSS}
+	(MNM5.D) node [above]	{net31}
+	(MNM5.G) node [left]	{B1}
+	(MNM5.S) node [below]	{net39}
+	(MNM5.bulk) node [right]	{VSS}
+	(MNM4.D) node [above]	{net39}
+	(MNM4.G) node [left]	{A1}
+	(MNM4.S) node [below]	{VSS}
+	(MNM4.bulk) node [right]	{VSS}
+	(MNM7.D) node [above]	{Y}
+	(MNM7.G) node [left]	{C0}
+	(MNM7.S) node [below]	{net31}
+	(MNM7.bulk) node [right]	{VSS}
+	(MNM0.D) node [above]	{net39}
+	(MNM0.G) node [left]	{A0}
+	(MNM0.S) node [below]	{VSS}
+	(MNM0.bulk) node [right]	{VSS}
+	(MPM4.D) node [below]	{Y}
+	(MPM4.G) node [left]	{B0}
+	(MPM4.S) node [above]	{net22}
+	(MPM4.bulk) node [right]	{VDD}
+	(MMPM1.D) node [below]	{Y}
+	(MMPM1.G) node [left]	{A0}
+	(MMPM1.S) node [above]	{net18}
+	(MMPM1.bulk) node [right]	{VDD}
+	(MPM7.D) node [below]	{Y}
+	(MPM7.G) node [left]	{C0}
+	(MPM7.S) node [above]	{VDD}
+	(MPM7.bulk) node [right]	{VDD}
+	(MPM6.D) node [below]	{net18}
+	(MPM6.G) node [left]	{A1}
+	(MPM6.S) node [above]	{VDD}
+	(MPM6.bulk) node [right]	{VDD}
+	(MPM5.D) node [below]	{net22}
+	(MPM5.G) node [left]	{B1}
+	(MPM5.S) node [above]	{VDD}
+	(MPM5.bulk) node [right]	{VDD}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+				
+	(MMPM1.G) |- (MNM0.G)
+	(MPM4.G) |- (MNM6.G)
+	(MPM7.G) |- (MNM7.G)
+	
+	(MNM4.G) --++(-1,0) |- ++(-8,10) |- (MPM6.G)
+	(MNM5.G) |- ++(-6,9) |- (MPM5.G)
+	
+	(MMPM1.G |- MNM0.G) to [short,*-o] ++(-4,0) node [left] {A0}
+	(MPM4.G |- MNM6.G) to [short,*-o] ++(-7,0) node [left] {B0}
+	(MNM7.G) to [short,*-o] ++(-10,0) node [left] {C0}
+	(MPM6.G) to [short,*-o] ++(-4,0) node [left] {A1}
+	(MPM5.G) ++(0,3) to [short,*-o] ++(-7,0) node [left] {B1} 
+	
+	(MPM6.D) -- (MMPM1.S)
+	(MPM5.D) -- (MPM4.S)
+	(MPM7.D) -- (MNM7.D)
+	(MNM7.S) -- (MNM6.D)
+	(MNM6.S) -- (MNM0.D)
+	(MNM5.S) -- (MNM4.D)
+	
+	coordinate (NET31) at ($(MNM7.S)!0.5!(MNM6.D)$)
+	(MNM5.D) |- (NET31) node [circ] {}
+	
+	coordinate (NET39) at ($(MNM6.S)!0.5!(MNM0.D)$)
+	coordinate (NET39B) at ($(MNM5.S)!0.5!(MNM4.D)$)
+	(NET39) to [short,*-*] (NET39B)
+	coordinate (Y) at ($(MPM7.D)!0.5!(MNM7.D)$)
+	(MPM4.D) |- (Y)
+	(MMPM1.D) |- (MPM4.D |- Y) node [circ] {}
+	
+	(Y) to [short,*-o] ++(4,0) node [right] {Y}
+	
+	(MPM6.bulk) to [short,-*] ++(0,0.27)
+	(MPM5.bulk) to [short,-*] ++(0,0.27)	
+	(MPM7.bulk) to [short,-*] ++(0,0.27)
+	(MMPM1.bulk) --++(0.5,0) node [vdd]{}
+	(MPM4.bulk) --++(0.5,0) node [vdd]{}
+	
+	
+	(MNM7.bulk) --++(0.5,0) node [ground]{}
+	(MNM6.bulk) --++(0.5,0) node [ground]{}
+	(MNM5.bulk) --++(0.5,0) node [ground]{}
+	(MNM0.bulk) to [short,-*] ++(0,-0.27) 
+	(MNM4.bulk) to [short,-*] ++(0,-0.27)
+
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(MNM4.S) node [ground] {}
+	(MNM0.S) node [ground] {}
+	(MPM7.S) node [vdd] (VDD) {VDD}
+	(MPM6.S) node [vdd] (VDD) {VDD}
+	(MPM5.S) node [vdd] (VDD) {VDD}
+;
+
+\end{circuitikz}

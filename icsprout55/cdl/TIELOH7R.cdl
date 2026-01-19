@@ -1,0 +1,5 @@
+.SUBCKT TIELOH7R VDD VSS Z
+*.PININFO Z:O VDD:B VSS:B
+MMM1 Z net4 VSS VSS nm1p2_svt_lp W=300n L=60n m=1
+MMM0 net4 net4 VDD VDD pm1p2_svt_lp W=380n L=60n m=1
+.ENDS

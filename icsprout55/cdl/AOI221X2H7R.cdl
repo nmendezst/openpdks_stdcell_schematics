@@ -1,0 +1,13 @@
+.SUBCKT AOI221X2H7R A0 A1 B0 B1 C0 VDD VSS Y
+*.PININFO A0:I A1:I B0:I B1:I C0:I Y:O VDD:B VSS:B
+MMPM3 net48 B1 net42 VDD pm1p2_svt_lp W=380n L=60n m=1
+MMPM4 Y C0 net48 VDD pm1p2_svt_lp W=380n L=60n m=1
+MMPM2 net48 B0 net42 VDD pm1p2_svt_lp W=380n L=60n m=1
+MMPM0 net42 A0 VDD VDD pm1p2_svt_lp W=380n L=60n m=1
+MMPM1 net42 A1 VDD VDD pm1p2_svt_lp W=380n L=60n m=1
+MMNM0 Y A1 net34 VSS nm1p2_svt_lp W=300n L=60n m=1
+MMNM1 net34 A0 VSS VSS nm1p2_svt_lp W=300n L=60n m=1
+MMNM2 Y B1 net35 VSS nm1p2_svt_lp W=300n L=60n m=1
+MMNM3 net35 B0 VSS VSS nm1p2_svt_lp W=300n L=60n m=1
+MMNM4 Y C0 VSS VSS nm1p2_svt_lp W=300n L=60n m=1
+.ENDS

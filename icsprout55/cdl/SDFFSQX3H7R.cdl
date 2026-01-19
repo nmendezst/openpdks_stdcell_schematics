@@ -1,0 +1,22 @@
+.SUBCKT SDFFSQX3H7R CK D Q SE SI SN VDD VSS
+*.PININFO CK:I D:I SE:I SI:I SN:I Q:O VDD:B VSS:B
+MMP3 net087 net33 net54 VDD pm1p2_svt_lp W=180n L=60n m=1
+MMP1 net0187 c net068 VDD pm1p2_svt_lp W=150n L=60n m=1
+MMP4 net54 s VDD VDD pm1p2_svt_lp W=150n L=60n m=1
+MMP2 net068 net048 net54 VDD pm1p2_svt_lp W=150n L=60n m=1
+XXI33 SE VDD VSS sen / INV pl=60n pw=210n nl=60n nw=170n
+XXI4 CK VDD VSS cn / INV pl=60n pw=210n nl=60n nw=170n
+XXI10 net0187 VDD VSS net048 / INV pl=60n pw=250n nl=60n nw=200n
+XXI12 net0187 VDD VSS Q / INV pl=60n pw=570n nl=60n nw=450n
+XXI31 SN VDD VSS s / INV pl=60n pw=210n nl=60n nw=170n
+XXI13 cn VDD VSS c / INV pl=60n pw=210n nl=60n nw=170n
+XXI9 c cn net087 net0187 VDD VSS / TG pl=60n pw=250n nl=60n nw=200n
+MMN1 net0187 cn net29 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMN2 net29 net048 VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMN5 net0187 s VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMN4 net087 net33 VSS VSS nm1p2_svt_lp W=200n L=60n m=1
+XXI35 SI SE sen VDD VSS net080 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI30 net080 cn c VDD VSS net33 / TSINV pl=60n pw=190n nl=60n nw=150n
+XXI29 net087 c cn VDD VSS net33 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI34 D sen SE VDD VSS net080 / TSINV pl=60n pw=270n nl=60n nw=190n
+.ENDS

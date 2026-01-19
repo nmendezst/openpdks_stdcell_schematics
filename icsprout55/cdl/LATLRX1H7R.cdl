@@ -1,0 +1,18 @@
+.SUBCKT LATLRX1H7R D GN Q QN RN VDD VSS
+*.PININFO D:I GN:I RN:I Q:O QN:O VDD:B VSS:B
+MNM4 net47 D net29 VSS nm1p2_svt_lp W=200n L=60n m=1
+MNM3 net29 RN VSS VSS nm1p2_svt_lp W=200n L=60n m=1
+MNM2 netq GB net66 VSS nm1p2_svt_lp W=150n L=60n m=1
+MNM1 net66 netqn net67 VSS nm1p2_svt_lp W=150n L=60n m=1
+MNM0 net67 RN VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MPM3 netq RN VDD VDD pm1p2_svt_lp W=200n L=60n m=1
+MPM2 net47 D VDD VDD pm1p2_svt_lp W=280n L=60n m=1
+MPM1 net65 netqn VDD VDD pm1p2_svt_lp W=150n L=60n m=1
+MPM0 netq GP net65 VDD pm1p2_svt_lp W=150n L=60n m=1
+XI11 GP VDD VSS GB / INV pl=6E-08 pw=2.8E-07 nl=6E-08 nw=2E-07
+XI12 GN VDD VSS GP / INV pl=6E-08 pw=2.8E-07 nl=6E-08 nw=2E-07
+XI13 netq VDD VSS netqn / INV pl=6E-08 pw=2.8E-07 nl=6E-08 nw=2E-07
+XI14 netqn VDD VSS QN / INV pl=6E-08 pw=3.4E-07 nl=6E-08 nw=2.4E-07
+XI16 netq VDD VSS Q / INV pl=6E-08 pw=3.4E-07 nl=6E-08 nw=2.4E-07
+XI15 GP GB net47 netq VDD VSS / TG pl=6E-08 pw=2.8E-07 nl=6E-08 nw=2E-07
+.ENDS

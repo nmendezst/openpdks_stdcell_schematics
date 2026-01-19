@@ -1,0 +1,16 @@
+.SUBCKT AO222X2H7R A0 A1 B0 B1 C0 C1 VDD VSS Y
+*.PININFO A0:I A1:I B0:I B1:I C0:I C1:I Y:O VDD:B VSS:B
+XXI1 net4 VDD VSS Y / INV pl=60n pw=380n nl=60n nw=300n
+MMPM4 net4 C0 net48 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMPM5 net4 C1 net48 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMPM3 net48 B1 net42 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMPM2 net48 B0 net42 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMPM0 net42 A0 VDD VDD pm1p2_svt_lp W=190n L=60n m=1
+MMPM1 net42 A1 VDD VDD pm1p2_svt_lp W=190n L=60n m=1
+MMNM0 net4 C1 net57 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMNM1 net57 C0 VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMNM2 net4 B1 net53 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMNM3 net53 B0 VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMNM4 net4 A1 net52 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMNM5 net52 A0 VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+.ENDS

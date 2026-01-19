@@ -1,0 +1,11 @@
+.SUBCKT TBUFX4H7R A OE VDD VSS Y
+*.PININFO A:I OE:I Y:O VDD:B VSS:B
+MNM2 net45 A VSS VSS nm1p2_svt_lp W=250n L=60n m=1
+MNM1 Y net45 VSS VSS nm1p2_svt_lp W=600n L=60n m=1
+MNM0 net45 OEN VSS VSS nm1p2_svt_lp W=600n L=60n m=1
+MPM2 net29 A VDD VDD pm1p2_svt_lp W=310n L=60n m=1
+MPM1 net29 OE VDD VDD pm1p2_svt_lp W=760n L=60n m=1
+MPM0 Y net29 VDD VDD pm1p2_svt_lp W=760n L=60n m=1
+XI1 OE VDD VSS OEN / INV pl=6e-08 pw=3.1e-07 nl=6e-08 nw=2.5e-07
+XI0 OE OEN net45 net29 VDD VSS / TG pl=6e-08 pw=3.1e-07 nl=6e-08 nw=2.5e-07
+.ENDS

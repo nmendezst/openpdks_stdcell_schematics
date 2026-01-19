@@ -1,0 +1,12 @@
+.SUBCKT NAND4BX2H7R AN B C D VDD VSS Y
+*.PININFO AN:I B:I C:I D:I Y:O VDD:B VSS:B
+MMN4 net7 B net28 VSS nm1p2_svt_lp W=300n L=60n m=1
+MMN5 net28 net36 VSS VSS nm1p2_svt_lp W=300n L=60n m=1
+MMN3 net10 C net7 VSS nm1p2_svt_lp W=300n L=60n m=1
+MMN0 Y D net10 VSS nm1p2_svt_lp W=300n L=60n m=1
+MMP3 Y net36 VDD VDD pm1p2_svt_lp W=380n L=60n m=1
+MMP2 Y D VDD VDD pm1p2_svt_lp W=380n L=60n m=1
+MMP1 Y C VDD VDD pm1p2_svt_lp W=380n L=60n m=1
+MMP0 Y B VDD VDD pm1p2_svt_lp W=380n L=60n m=1
+XXI3 AN VDD VSS net36 / INV pl=6e-08 pw=3.8e-07 nl=6e-08 nw=3e-07
+.ENDS

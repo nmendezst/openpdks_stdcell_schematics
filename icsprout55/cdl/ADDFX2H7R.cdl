@@ -1,0 +1,29 @@
+.SUBCKT ADDFX2H7R A B CI CO S VDD VSS
+*.PININFO A:I B:I CI:I CO:O S:O VDD:B VSS:B
+XI14 net30 VDD VSS S / INV pl=6e-08 pw=3.8e-07 nl=6e-08 nw=3e-07
+XXI2 net58 VDD VSS CO / INV pl=6e-08 pw=3.8e-07 nl=6e-08 nw=3e-07
+MMM17 net30 CI net33 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM16 net30 A net33 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM24 net10 B VSS VSS nm1p2_svt_lp W=180n L=60n m=1
+MMM15 net30 B net33 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM20 net18 CI net10 VSS nm1p2_svt_lp W=180n L=60n m=1
+MMM14 net33 net58 VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM9 net58 B net49 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM21 net30 A net18 VSS nm1p2_svt_lp W=180n L=60n m=1
+MMM5 net58 A net49 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM1 net58 A net54 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM3 net54 B VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM4 net49 CI VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM6 net101 CI VDD VDD pm1p2_svt_lp W=190n L=60n m=1
+MMM25 net77 B VDD VDD pm1p2_svt_lp W=230n L=60n m=1
+MMM2 net117 B VDD VDD pm1p2_svt_lp W=190n L=60n m=1
+MMM22 net73 CI net77 VDD pm1p2_svt_lp W=230n L=60n m=1
+MMM13 net30 CI net97 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMM10 net97 net58 VDD VDD pm1p2_svt_lp W=190n L=60n m=1
+MMM7 net58 A net101 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMM12 net30 A net97 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMM11 net30 B net97 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMM0 net58 A net117 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMM8 net58 B net101 VDD pm1p2_svt_lp W=190n L=60n m=1
+MMM23 net30 A net73 VDD pm1p2_svt_lp W=230n L=60n m=1
+.ENDS

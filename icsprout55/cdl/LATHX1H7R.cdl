@@ -1,0 +1,10 @@
+.SUBCKT LATHX1H7R D G Q QN VDD VSS
+*.PININFO D:I G:I Q:O QN:O VDD:B VSS:B
+XI9 D GP GN VDD VSS net25 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI15 net9 GN GP VDD VSS net25 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI4 G VDD VSS GN / INV pl=60n pw=280n nl=60n nw=200n
+XI8 GN VDD VSS GP / INV pl=60n pw=280n nl=60n nw=200n
+XXI7 net25 VDD VSS net9 / INV pl=60n pw=280n nl=60n nw=200n
+XI0 net25 VDD VSS Q / INV pl=60n pw=340n nl=60n nw=240n
+XI1 net9 VDD VSS QN / INV pl=60n pw=340n nl=60n nw=240n
+.ENDS

@@ -1,0 +1,11 @@
+.SUBCKT NOR4X1P4H7R A B C D VDD VSS Y
+*.PININFO A:I B:I C:I D:I Y:O VDD:B VSS:B
+MMN4 Y A VSS VSS nm1p2_svt_lp W=245n L=60n m=1
+MMN3 Y B VSS VSS nm1p2_svt_lp W=245n L=60n m=1
+MMN2 Y D VSS VSS nm1p2_svt_lp W=245n L=60n m=1
+MMN0 Y C VSS VSS nm1p2_svt_lp W=245n L=60n m=1
+MMP4 Y D net27 VDD pm1p2_svt_lp W=314n L=60n m=1
+MMP3 net27 C net029 VDD pm1p2_svt_lp W=314n L=60n m=1
+MMP1 net023 A VDD VDD pm1p2_svt_lp W=314n L=60n m=1
+MMP2 net029 B net023 VDD pm1p2_svt_lp W=314n L=60n m=1
+.ENDS

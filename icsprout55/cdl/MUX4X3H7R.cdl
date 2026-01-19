@@ -1,0 +1,12 @@
+.SUBCKT MUX4X3H7R A B C D S0 S1 VDD VSS Y
+*.PININFO A:I B:I C:I D:I S0:I S1:I Y:O VDD:B VSS:B
+XXI1 net9 VDD VSS Y / INV pl=60n pw=570n nl=60n nw=450n
+XXI8 S0 VDD VSS S0N / INV pl=60n pw=250n nl=60n nw=200n
+XXI9 S1 VDD VSS S1N / INV pl=60n pw=195n nl=60n nw=160n
+XXI11 S1 S1N net17 net9 VDD VSS / TG pl=60n pw=250n nl=60n nw=200n
+XXI10 S1N S1 net25 net9 VDD VSS / TG pl=60n pw=250n nl=60n nw=200n
+XXI4 A S0N S0 VDD VSS net25 / TSINV pl=60n pw=250n nl=60n nw=200n
+XXI5 B S0 S0N VDD VSS net25 / TSINV pl=60n pw=250n nl=60n nw=200n
+XXI6 C S0N S0 VDD VSS net17 / TSINV pl=60n pw=250n nl=60n nw=200n
+XXI7 D S0 S0N VDD VSS net17 / TSINV pl=60n pw=250n nl=60n nw=200n
+.ENDS

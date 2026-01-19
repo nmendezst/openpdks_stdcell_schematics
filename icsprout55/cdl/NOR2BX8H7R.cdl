@@ -1,0 +1,8 @@
+.SUBCKT NOR2BX8H7R AN B VDD VSS Z
+*.PININFO AN:I B:I Z:O VDD:B VSS:B
+MMN2 Z B VSS VSS nm1p2_svt_lp W=1.2u L=60n m=1
+MMN0 Z net17 VSS VSS nm1p2_svt_lp W=1.2u L=60n m=1
+MMP2 Z B net016 VDD pm1p2_svt_lp W=1.52u L=60n m=1
+MMP1 net016 net17 VDD VDD pm1p2_svt_lp W=1.52u L=60n m=1
+XXI3 AN VDD VSS net17 / INV pl=6e-08 pw=6.2e-07 nl=6e-08 nw=5e-07
+.ENDS

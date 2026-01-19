@@ -1,0 +1,16 @@
+.SUBCKT SDFFNX2H7R CKN D Q QN SE SI VDD VSS
+*.PININFO CKN:I D:I SE:I SI:I Q:O QN:O VDD:B VSS:B
+XXI21 D net56 SE VDD VSS net76 / TSINV pl=60n pw=280n nl=60n nw=200n
+XXI22 SI SE net56 VDD VSS net76 / TSINV pl=60n pw=250n nl=60n nw=200n
+XXI15 net48 net69 net42 VDD VSS net51 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI14 net44 net42 net69 VDD VSS net39 / TSINV pl=60n pw=150n nl=60n nw=150n
+XXI9 net44 net42 net69 VDD VSS net51 / TSINV pl=60n pw=340n nl=60n nw=240n
+XXI23 SE VDD VSS net56 / INV pl=60n pw=280n nl=60n nw=200n
+XXI12 net51 VDD VSS Q / INV pl=60n pw=400n nl=60n nw=280n
+XXI10 net51 VDD VSS net48 / INV pl=60n pw=280n nl=60n nw=200n
+XXI4 CKN VDD VSS net42 / INV pl=60n pw=280n nl=60n nw=200n
+XXI13 net42 VDD VSS net69 / INV pl=60n pw=280n nl=60n nw=200n
+XXI7 net39 VDD VSS net44 / INV pl=60n pw=340n nl=60n nw=240n
+XXI5 net48 VDD VSS QN / INV pl=60n pw=400n nl=60n nw=280n
+XXI6 net69 net42 net76 net39 VDD VSS / TG pl=60n pw=280n nl=60n nw=200n
+.ENDS

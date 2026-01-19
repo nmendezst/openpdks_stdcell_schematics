@@ -1,0 +1,12 @@
+.SUBCKT XOR3X3H7R A B C VDD VSS Y
+*.PININFO A:I B:I C:I Y:O VDD:B VSS:B
+XXI16 A AN net55 net45 VDD VSS / TG pl=6e-08 pw=2.1e-07 nl=6e-08 nw=1.7e-07
+XXI14 net57 net45 net59 net49 VDD VSS / TG pl=6e-08 pw=2.1e-07 nl=6e-08 nw=1.7e-07
+XXI15 net45 VDD VSS net57 / INV pl=6e-08 pw=2.7e-07 nl=6e-08 nw=2.1e-07
+XI0 B VDD VSS net55 / INV pl=6e-08 pw=2.7e-07 nl=6e-08 nw=2.1e-07
+XXI11 net49 VDD VSS Y / INV pl=6e-08 pw=5.7e-07 nl=6e-08 nw=4.5e-07
+XI1 A VDD VSS AN / INV pl=6e-08 pw=2.7e-07 nl=6e-08 nw=2.1e-07
+XI2 C VDD VSS net59 / INV pl=6e-08 pw=2.7e-07 nl=6e-08 nw=2.1e-07
+XXI18 net55 AN A VDD VSS net45 / TSINV pl=6e-08 pw=2.7e-07 nl=6e-08 nw=2.1e-07
+XI3 net59 net45 net57 VDD VSS net49 / TSINV pl=6e-08 pw=2.7e-07 nl=6e-08 nw=2.1e-07
+.ENDS

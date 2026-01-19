@@ -1,0 +1,79 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(5, 1) node [nmos, bulk] (MNM0) {MNM0} node [above right] {\tiny {W=900n L=60n}}
+	(2, 1) node [nmos, bulk] (MMN0) {MMN0} node [above right] {\tiny {W=900n L=60n}}
+	(5, 3) node [pmos, bulk] (MPM0) {MPM0} node [above right] {\tiny {W=1.14u L=60n}}
+	(5, 5) node [pmos, bulk] (MMP1) {MMP1} node [above right] {\tiny {W=1.14u L=60n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(MNM0.D) node [above]	{Y}
+	(MNM0.G) node [left]	{B}
+	(MNM0.S) node [below]	{VSS}
+	(MNM0.bulk) node [right]	{VSS}
+	(MMN0.D) node [above]	{Y}
+	(MMN0.G) node [left]	{A}
+	(MMN0.S) node [below]	{VSS}
+	(MMN0.bulk) node [right]	{VSS}
+	(MPM0.D) node [below]	{Y}
+	(MPM0.G) node [left]	{B}
+	(MPM0.S) node [above]	{net015}
+	(MPM0.bulk) node [right]	{VDD}
+	(MMP1.D) node [below]	{net015}
+	(MMP1.G) node [left]	{A}
+	(MMP1.S) node [above]	{VDD}
+	(MMP1.bulk) node [right]	{VDD}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+	(MMN0.G) |- (MMP1.G)
+	(MMN0.G |- MMP1.G) to [short,*-o] ++(-1,0) node [left] {A}
+	
+	(MPM0.G) |- (MNM0.G)
+	(MPM0.G) to [short,*-o] ++(-4,0) node [left] {B} 
+	
+	(MMP1.D) -- (MPM0.S)
+	(MPM0.D) -- (MNM0.D)
+	
+	coordinate (Y) at ($(MPM0.D)!0.5!(MNM0.D)$)
+	
+	(Y) to [short,*-o] ++(2,0) node [right] {Y} 
+	
+	(MMN0.D) |- (Y)
+	
+	(MMP1.bulk) to [short,-*] ++(0,0.27)
+	(MPM0.bulk) --++(0.5,0) node [vdd] {}
+	
+	(MMN0.bulk) to [short,-*] ++(0,-0.27)
+	(MNM0.bulk) to [short,-*] ++(0,-0.27)
+
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(MNM0.S) node [ground] {}
+	(MMN0.S) node [ground] {}
+	(MMP1.S) node [vdd] (VDD) {VDD}
+;
+
+\end{circuitikz}

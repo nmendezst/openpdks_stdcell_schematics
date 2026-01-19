@@ -1,0 +1,18 @@
+.SUBCKT DFFRQNX1H7R CK D QN RN VDD VSS
+*.PININFO CK:I D:I RN:I QN:O VDD:B VSS:B
+MMM19 net40 cn net33 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM18 net33 net25 net61 VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM28 net61 RN VSS VSS nm1p2_svt_lp W=150n L=60n m=1
+MMM22 net40 c net117 VDD pm1p2_svt_lp W=150n L=60n m=1
+MMM21 net117 net25 VDD VDD pm1p2_svt_lp W=150n L=60n m=1
+MMM27 net117 RN VDD VDD pm1p2_svt_lp W=150n L=60n m=1
+XXI6 CK VDD VSS cn / INV pl=60n pw=210n nl=60n nw=170n
+XXI5 cn VDD VSS c / INV pl=60n pw=210n nl=60n nw=170n
+XI2 D VDD VSS net53 / INV pl=60n pw=190n nl=60n nw=150n
+XI6 net25 VDD VSS QN / INV pl=60n pw=270n nl=60n nw=210n
+XI4 net40 VDD VSS net25 / INV pl=60n pw=190n nl=60n nw=150n
+XI3 net51 c cn VDD VSS net13 / TSINV pl=60n pw=150n nl=60n nw=150n
+XI7 net53 cn c VDD VSS net13 / TSINV pl=60n pw=200n nl=60n nw=240n
+XI0 RN net13 VDD VSS net51 / NAND2 pl=60n pw=210n nl=60n nw=170n
+XI5 c cn net51 net40 VDD VSS / TG pl=60n pw=190n nl=60n nw=150n
+.ENDS

@@ -1,0 +1,7 @@
+.SUBCKT TSINV A CK CKN VDD VSS Y
+*.PININFO A:I CK:I CKN:I VDD:B VSS:B Y:B
+MMN0 Y CK net18 VSS nm1p2_svt_lp W=nw L=nl m=1
+MMN1 net18 A VSS VSS nm1p2_svt_lp W=nw L=nl m=1
+MMP1 net024 A VDD VDD pm1p2_svt_lp W=pw L=pl m=1
+MMP0 Y CKN net024 VDD pm1p2_svt_lp W=pw L=pl m=1
+.ENDS
