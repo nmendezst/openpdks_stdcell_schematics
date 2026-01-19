@@ -1,0 +1,78 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(5, 5) node [pmos, bulk] (XP1) {XP1} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(2, 5) node [pmos, bulk] (XP0) {XP0} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(5, 1) node [nmos, bulk] (XN1) {XN1} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(5, 3) node [nmos, bulk] (XN0) {XN0} node [above right] {\tiny {w=740.00n l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(XP1.D) node [below]	{Y}
+	(XP1.G) node [left]	{B}
+	(XP1.S) node [above]	{VDD}
+	(XP1.bulk) node [right]	{VDD}
+	(XP0.D) node [below]	{Y}
+	(XP0.G) node [left]	{A}
+	(XP0.S) node [above]	{VDD}
+	(XP0.bulk) node [right]	{VDD}
+	(XN1.D) node [above]	{net1}
+	(XN1.G) node [left]	{B}
+	(XN1.S) node [below]	{VSS}
+	(XN1.bulk) node [right]	{VSS}
+	(XN0.D) node [above]	{Y}
+	(XN0.G) node [left]	{A}
+	(XN0.S) node [below]	{net1}
+	(XN0.bulk) node [right]	{VSS}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+	(XP0.G) |- (XN0.G)
+	(XP0.G |- XN0.G) to [short,*-o] ++(-1,0) node [left] {A}
+	
+	(XP1.G) |- (XN1.G)
+	(XP1.G |- XN1.G)  to [short,*-o] ++(-4,0) node [left] {B}
+	
+	(XP1.D) -- (XN0.D) 
+	coordinate (Y) at ($(XP1.D)!0.5!(XN0.D)$)
+	(Y) to [short,*-o] ++(2,0) node [right] {Y}
+	
+	(XP0.D) |- (XP1.D |- Y)
+	
+	(XN0.S) -- (XN1.D)
+	
+	
+	(XP0.bulk) to [short,-*] ++(0,0.27)
+	(XP1.bulk) to [short,-*] ++(0,0.27)	
+	(XN0.bulk) --++(0.5,0) node [ground] {}
+	(XN1.bulk) to [short,-*] ++(0,-0.27)	
+	
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XP1.S) node [vdd] (VDD) {VDD}
+	(XP0.S) node [vdd] (VDD) {VDD}
+	(XN1.S) node [ground] {}
+;
+
+\end{circuitikz}

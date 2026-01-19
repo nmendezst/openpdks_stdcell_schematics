@@ -1,0 +1,101 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(5, 5) node [pmos, bulk] (XX0) {XX0} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(2, 5) node [pmos, bulk] (XX1) {XX1} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(8, 5) node [pmos, bulk] (XX3) {XX3} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(8, 3) node [nmos, bulk] (XX2) {XX2} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(2, 1) node [nmos, bulk] (XX4) {XX4} node [above right] {\tiny {w=550.00n l=130.00n}}
+	(8, 1) node [nmos, bulk] (XX5) {XX5} node [above right] {\tiny {w=740.00n l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(XX0.D) node [below]	{Y}
+	(XX0.G) node [left]	{net2}
+	(XX0.S) node [above]	{VDD}
+	(XX0.bulk) node [right]	{VDD}
+	(XX1.D) node [below]	{net2}
+	(XX1.G) node [left]	{A\_N}
+	(XX1.S) node [above]	{VDD}
+	(XX1.bulk) node [right]	{VDD}
+	(XX3.D) node [below]	{Y}
+	(XX3.G) node [left]	{B}
+	(XX3.S) node [above]	{VDD}
+	(XX3.bulk) node [right]	{VDD}
+	(XX2.D) node [above]	{Y}
+	(XX2.G) node [left]	{net2}
+	(XX2.S) node [below]	{net1}
+	(XX2.bulk) node [right]	{VSS}
+	(XX4.D) node [above]	{net2}
+	(XX4.G) node [left]	{A\_N}
+	(XX4.S) node [below]	{VSS}
+	(XX4.bulk) node [right]	{VSS}
+	(XX5.D) node [above]	{net1}
+	(XX5.G) node [left]	{B}
+	(XX5.S) node [below]	{VSS}
+	(XX5.bulk) node [right]	{VSS}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+	(XX1.G) |- (XX4.G)
+%	coordinate (AN) at ($(XX1.G)!0.5!(XX4.G)$)
+%	(AN) to [short,*-o] ++(-1,0) node [left] {A\_N}
+
+	
+	(XX1.D) -- (XX4.D)	
+	(XX3.G) |- (XX5.G)
+	
+	(XX3.D) -- (XX2.D)
+	coordinate (Y) at ($(XX3.D)!0.5!(XX2.D)$)
+	(Y) to [short,*-o] ++(2,0) node [right] {Y}
+	
+	(XX0.D) |- (XX3.D |- Y)	
+	(XX0.G) |- (XX2.G)
+	
+	(XX2.S) -- (XX5.D)
+	coordinate (NET1) at ($(XX2.S)!0.5!(XX5.D)$)
+	(XX5.G |- NET1) to [short,*-o] ++(-7,0) node [left] {B}
+	(XX1.G |- Y) to [short,*-o] ++(-1,0) node [left] {A\_N}
+	
+	coordinate (NET2) at ($(XX1.D)!0.5!(XX4.D)$)
+	(NET2) to [short,*-*] (XX0.G |- XX2.G)
+	
+	(XX1.bulk) to [short,-*] ++(0,0.27)
+	(XX0.bulk) to [short,-*] ++(0,0.27)
+	(XX3.bulk) to [short,-*] ++(0,0.27)
+
+	(XX4.bulk) to [short,-*] ++(0,-0.27)
+	(XX5.bulk) to [short,-*] ++(0,-0.27)
+	(XX2.bulk) --++(0.5,0) node [ground] {}
+	
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XX0.S) node [vdd] (VDD) {VDD}
+	(XX1.S) node [vdd] (VDD) {VDD}
+	(XX3.S) node [vdd] (VDD) {VDD}
+	(XX4.S) node [ground] {}
+	(XX5.S) node [ground] {}
+;
+
+\end{circuitikz}

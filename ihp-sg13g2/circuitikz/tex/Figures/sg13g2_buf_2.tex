@@ -1,0 +1,78 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(2, 1) node [nmos, bulk] (XN1) {XN1} node [above right] {\tiny {w=640.00n l=130.00n}}
+	(5, 1) node [nmos, bulk] (XN0) {XN0} node [above right] {\tiny {w=1.48u l=130.00n}}
+	(5, 3) node [pmos, bulk] (XP1) {XP1} node [above right] {\tiny {w=2.24u l=130.00n}}
+	(2, 3) node [pmos, bulk] (XP0) {XP0} node [above right] {\tiny {w=1.000u l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(XN1.D) node [above]	{net1}
+	(XN1.G) node [left]	{A}
+	(XN1.S) node [below]	{VSS}
+	(XN1.bulk) node [right]	{VSS}
+	(XN0.D) node [above]	{X}
+	(XN0.G) node [left]	{net1}
+	(XN0.S) node [below]	{VSS}
+	(XN0.bulk) node [right]	{VSS}
+	(XP1.D) node [below]	{X}
+	(XP1.G) node [left]	{net1}
+	(XP1.S) node [above]	{VDD}
+	(XP1.bulk) node [right]	{VDD}
+	(XP0.D) node [below]	{net1}
+	(XP0.G) node [left]	{A}
+	(XP0.S) node [above]	{VDD}
+	(XP0.bulk) node [right]	{VDD}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+		
+	(XP0.G) |- (XN1.G)
+	coordinate (A) at ($(XP0.G)!0.5!(XN1.G)$)
+	(A) to [short,*-o] ++(-1,0) node [left] {A}
+	
+	(XP1.G) |- (XN0.G)
+	coordinate (NET1) at ($(XP1.G)!0.5!(XN0.G)$)
+	(NET1) to [short,*-*] (XP0.D |- NET1) 
+	
+	(XP0.D) -- (XN1.D)
+	
+	(XP1.D) -- (XN0.D)
+	coordinate (X) at ($(XP1.D)!0.5!(XN0.D)$)
+	(X) to [short,*-o] ++(2,0) node [right] {X}
+	
+	(XN1.bulk) to [short,-*] ++(0,-0.27)
+	(XN0.bulk) to [short,-*] ++(0,-0.27)	
+	(XP0.bulk) to [short,-*] ++(0,0.27)	
+	(XP1.bulk) to [short,-*] ++(0,0.27)		
+
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XN1.S) node [ground] {}
+	(XN0.S) node [ground] {}
+	(XP1.S) node [vdd] (VDD) {VDD}
+	(XP0.S) node [vdd] (VDD) {VDD}
+;
+
+\end{circuitikz}

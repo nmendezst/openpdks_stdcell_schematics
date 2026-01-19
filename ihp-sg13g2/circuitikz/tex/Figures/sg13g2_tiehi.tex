@@ -1,0 +1,76 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(4, 3) node [nmos, bulk] (XMN2) {XMN2} node [above right] {\tiny {w=795.00n l=130.00n}}
+	(2, 1) node [nmos, bulk] (XMN1) {XMN1} node [above right] {\tiny {w=300n l=130.00n}}
+	(6, 5) node [pmos, bulk] (XMP2) {XMP2} node [above right] {\tiny {w=1.155u l=130.00n}}
+	(2, 5) node [pmos, bulk] (XMP1) {XMP1} node [above right] {\tiny {w=660.0n l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(XMN2.D) node [above]	{net3}
+	(XMN2.G) node [left]	{net2}
+	(XMN2.S) node [below]	{VSS}
+	(XMN2.bulk) node [right]	{VSS}
+	(XMN1.D) node [above]	{net1}
+	(XMN1.G) node [left]	{net1}
+	(XMN1.S) node [below]	{VSS}
+	(XMN1.bulk) node [right]	{VSS}
+	(XMP2.D) node [below]	{L\_HI}
+	(XMP2.G) node [left]	{net3}
+	(XMP2.S) node [above]	{VDD}
+	(XMP2.bulk) node [right]	{VDD}
+	(XMP1.D) node [below]	{net2}
+	(XMP1.G) node [left]	{net1}
+	(XMP1.S) node [above]	{VDD}
+	(XMP1.bulk) node [right]	{VDD}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+	(XMP1.G) |- (XMN1.G)
+	(XMP1.D) |- (XMN2.G)
+	(XMN1.D) |- (XMN1.G |- XMN1.D) node [circ] {}
+	
+	(XMN2.D) |- (XMP2.G)
+	
+	(XMP2.D) |- ++(2,0) node [ocirc] {} node [right] {L\_HI}
+	%coordinate (AUX) at ($(XMP2.D)!0.5!(XMN2.D)$)
+	%(XMP2.D) -- (XMP2.D |- AUX)
+	%(XMP2.D |- AUX) to [short,-o] ++(2,0) node [right] {L\_HI}
+	
+	(XMP1.bulk) to [short,-*] ++(0,0.27)
+	(XMP2.bulk) to [short,-*] ++(0,0.27)
+	
+	(XMN1.bulk) to [short,-*] ++(0,-0.27)
+	(XMN2.bulk) to [short,-*] ++(0,-0.27)
+
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XMN2.S) node [ground] {}
+	(XMN1.S) node [ground] {}
+	(XMP2.S) node [vdd] (VDD) {VDD}
+	(XMP1.S) node [vdd] (VDD) {VDD}
+;
+
+\end{circuitikz}

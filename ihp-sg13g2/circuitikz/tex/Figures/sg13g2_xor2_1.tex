@@ -1,0 +1,132 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(2, 3) node [nmos, bulk] (XX0) {XX0} node [above right] {\tiny {w=550.00n l=130.00n}}
+	(12, 3) node [nmos, bulk] (XX4) {XX4} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(8, 3) node [nmos, bulk] (XX6) {XX6} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(12, 1) node [nmos, bulk] (XX8) {XX8} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(5, 3) node [nmos, bulk] (XX9) {XX9} node [above right] {\tiny {w=550.00n l=130.00n}}
+	(5, 7) node [pmos, bulk] (XX1) {XX1} node [above right] {\tiny {w=1.000u l=130.00n}}
+	(5, 5) node [pmos, bulk] (XX2) {XX2} node [above right] {\tiny {w=1.000u l=130.00n}}
+	(12, 7) node [pmos, bulk] (XX3) {XX3} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(8, 7) node [pmos, bulk, xscale=-1] (XX5) {\ctikzflipx{XX5}} node [below left] {\tiny {w=1.12u l=130.00n}}
+	(8, 5) node [pmos, bulk] (XX7) {XX7} node [above right] {\tiny {w=1.12u l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(XX0.D) node [above]	{net1}
+	(XX0.G) node [left]	{A}
+	(XX0.S) node [below]	{VSS}
+	(XX0.bulk) node [right]	{VSS}
+	(XX4.D) node [above]	{X}
+	(XX4.G) node [left]	{B}
+	(XX4.S) node [below]	{net3}
+	(XX4.bulk) node [right]	{VSS}
+	(XX6.D) node [above]	{X}
+	(XX6.G) node [left]	{net1}
+	(XX6.S) node [below]	{VSS}
+	(XX6.bulk) node [right]	{VSS}
+	(XX8.D) node [above]	{net3}
+	(XX8.G) node [left]	{A}
+	(XX8.S) node [below]	{VSS}
+	(XX8.bulk) node [right]	{VSS}
+	(XX9.D) node [above]	{net1}
+	(XX9.G) node [left]	{B}
+	(XX9.S) node [below]	{VSS}
+	(XX9.bulk) node [right]	{VSS}
+	(XX1.D) node [below]	{net6}
+	(XX1.G) node [left]	{A}
+	(XX1.S) node [above]	{VDD}
+	(XX1.bulk) node [right]	{VDD}
+	(XX2.D) node [below]	{net1}
+	(XX2.G) node [left]	{B}
+	(XX2.S) node [above]	{net6}
+	(XX2.bulk) node [right]	{VDD}
+	(XX3.D) node [below]	{net5}
+	(XX3.G) node [left]	{A}
+	(XX3.S) node [above]	{VDD}
+	(XX3.bulk) node [right]	{VDD}
+	(XX5.D) node [below]	{net5}
+	(XX5.G) node [left]	{B}
+	(XX5.S) node [above]	{VDD}
+	(XX5.bulk) node [right]	{VDD}
+	(XX7.D) node [below]	{X}
+	(XX7.G) node [left]	{net1}
+	(XX7.S) node [above]	{net5}
+	(XX7.bulk) node [right]	{VDD}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+	(XX0.G) |- (XX1.G)
+	(XX8.G) |- (XX3.G)
+	(XX0.G |- XX1.G) to [short,-o] ++(-1,0) node [left] {A}
+	(XX9.G |- XX2.G) to [short,-o] ++(-4,0) node [left] {B}
+	
+	(XX1.D) -- (XX2.S)
+	(XX2.D) -- (XX9.D)
+	coordinate (NET1) at ($(XX2.D)!0.5!(XX9.D)$)
+	(XX0.D) |- (NET1)
+	
+	(XX9.G) |- (XX2.G)
+	(XX5.G) to [short,*-] ++(0,2)  -| (XX2.G) node [circ] {}
+	(XX3.G) to [short,*-] ++(0,3) -| (XX0.G |- XX1.G) node [circ] {}
+	
+	(XX5.D) -- (XX7.S)
+	coordinate (NET5) at ($(XX5.D)!0.5!(XX7.S)$)
+	(XX7.D) -- (XX6.D) 
+	(XX3.D) |- (NET5) node [circ] {}
+	(XX4.G) -| (XX5.G)
+	(XX4.S) -- (XX8.D)
+
+	(XX7.G) |- (XX6.G)
+	(NET1) node [circ] {} -| (XX6.G |- NET1) node [circ] {}
+	
+	coordinate (X) at ($(XX7.D)!0.5!(XX6.D)$)
+	(XX4.D) |- (X) node [circ] {}
+	(XX4.D |- X) to [short,*-o] ++(2,0) node [right] {X}
+	
+	(XX1.bulk) to [short,-*] ++(0,0.27)
+	(XX5.bulk) to [short,-*] ++(0,0.27)
+	(XX3.bulk) to [short,-*] ++(0,0.27)
+	(XX2.bulk) --++(0.5,0) node [vdd] {}
+	(XX7.bulk) --++(0.5,0) node [vdd] {}
+		
+	(XX0.bulk) to [short,-*] ++(0,-0.27)
+	(XX9.bulk) to [short,-*] ++(0,-0.27)
+	(XX6.bulk) to [short,-*] ++(0,-0.27)
+	(XX8.bulk) to [short,-*] ++(0,-0.27)
+	(XX4.bulk) --++(0.5,0) node [ground] {}
+	
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XX0.S) node [ground] {}
+	(XX6.S) node [ground] {}
+	(XX8.S) node [ground] {}
+	(XX9.S) node [ground] {}
+	(XX1.S) node [vdd] (VDD) {VDD}
+	(XX3.S) node [vdd] (VDD) {VDD}
+	(XX5.S) node [vdd] (VDD) {VDD}
+;
+
+\end{circuitikz}

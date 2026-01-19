@@ -1,0 +1,47 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Diodes||||||||||||||||||||
+
+\draw
+	(2,0) to [diode=Xdn\_1] (2,2)	
+	(2,4) to [full diode=XD0] (2,6)
+
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+	(2,3) node [right]	{A}
+	(2,1) node [above right]	{\scriptsize{l=780n w=780n}}
+	(2,5) node [above right]	{\scriptsize{l=1.34u w=1.05u}}
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+	(2,3) to [short,*-] (2,4)
+	(2,3) -- (2,2)
+	(2,3) --++(-2,0) node[ocirc]{} node[left]{A}
+
+
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+(2,0) node [ground] {}
+(2,6) node [vdd] (VDD) {VDD}
+
+;
+
+\end{circuitikz}

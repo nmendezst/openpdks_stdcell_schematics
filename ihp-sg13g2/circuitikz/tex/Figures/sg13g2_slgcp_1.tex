@@ -1,0 +1,253 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(24, 7) node [pmos, bulk] (XX19) {XX19} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(8, 3.5) node [pmos, bulk, xscale=-1, rotate=90, component text=down] (XX18) {} node [below right] {\tiny {w=840.00n l=130.00n}}
+	(XX18.D) node [above left, rotate=-90] {XX18} 
+	(9, 9) node [pmos, bulk] (XX16) {XX16} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(18, 7) node [pmos, bulk] (XX14) {XX14} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(2, 5) node [pmos, bulk] (XX13) {XX13} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(12, 5) node [pmos, bulk] (XX11) {XX11} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(16, 3) node [pmos, bulk] (XX9) {XX9} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(6, 9) node [pmos, bulk] (XX7) {XX7} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(21, 7) node [pmos, bulk] (XX5) {XX5} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(12, 7) node [pmos, bulk, xscale=-1] (XX3) {\ctikzflipx{XX3}} node [below left] {\tiny {w=420.00n l=130.00n}}
+	(2, 3) node [pmos, bulk] (XX2) {XX2} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(16, 1) node [nmos, bulk] (XX21) {XX21} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(21, 3) node [nmos, bulk] (XX20) {XX20} node [above right] {\tiny {w=640.00n l=130.00n}}
+	(5, 1) node [nmos, bulk] (XX17) {XX17} node [above right] {\tiny {w=550.00n l=130.00n}}
+	(8, 4.5) node [nmos, bulk, rotate=-90] (XX15) {\ctikzflipxy{XX15}} node [above left] {\tiny {w=550.00n l=130.00n}}
+	(12, 1) node [nmos, bulk, xscale=-1] (XX12) {\ctikzflipx{XX12}} node [below left] {\tiny {w=420.00n l=130.00n}}
+	(21, 5) node [nmos, bulk] (XX10) {XX10} node [above right] {\tiny {w=640.00n l=130.00n}}
+	(24, 5) node [nmos, bulk] (XX8) {XX8} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(9, 7) node [nmos, bulk] (XX6) {XX6} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(2, 1) node [nmos, bulk] (XX4) {XX4} node [above right] {\tiny {w=550.00n l=130.00n}}
+	(6, 7) node [nmos, bulk] (XX1) {XX1} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(12, 3) node [nmos, bulk] (XX0) {XX0} node [above right] {\tiny {w=420.00n l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(XX19.D) node [below]	{GCLK}
+	(XX19.G) node [left]	{net5}
+	(XX19.S) node [above]	{VDD}
+	(XX19.bulk) node [right]	{VDD}
+	(XX18.D) node [below]	{net1}
+	(XX18.G) node [left]	{CLKbb}
+	(XX18.S) node [above]	{net6}
+	(XX18.bulk) node [right]	{VDD}
+	(XX16.D) node [below]	{CLKbb}
+	(XX16.G) node [left]	{CLKb}
+	(XX16.S) node [above]	{VDD}
+	(XX16.bulk) node [right]	{VDD}
+	(XX14.D) node [below]	{net5}
+	(XX14.G) node [left]	{int\_GATE}
+	(XX14.S) node [above]	{VDD}
+	(XX14.bulk) node [right]	{VDD}
+	(XX13.D) node [below]	{net3}
+	(XX13.G) node [left]	{SCE}
+	(XX13.S) node [above]	{VDD}
+	(XX13.bulk) node [right]	{VDD}
+	(XX11.D) node [below]	{net6}
+	(XX11.G) node [left]	{CLKb}
+	(XX11.S) node [above]	{net4}
+	(XX11.bulk) node [right]	{VDD}
+	(XX9.D) node [below]	{int\_GATE}
+	(XX9.G) node [left]	{net6}
+	(XX9.S) node [above]	{VDD}
+	(XX9.bulk) node [right]	{VDD}
+	(XX7.D) node [below]	{CLKb}
+	(XX7.G) node [left]	{CLK}
+	(XX7.S) node [above]	{VDD}
+	(XX7.bulk) node [right]	{VDD}
+	(XX5.D) node [below]	{net5}
+	(XX5.G) node [left]	{CLK}
+	(XX5.S) node [above]	{VDD}
+	(XX5.bulk) node [right]	{VDD}
+	(XX3.D) node [below]	{net4}
+	(XX3.G) node [left]	{int\_GATE}
+	(XX3.S) node [above]	{VDD}
+	(XX3.bulk) node [right]	{VDD}
+	(XX2.D) node [below]	{net1}
+	(XX2.G) node [left]	{GATE}
+	(XX2.S) node [above]	{net3}
+	(XX2.bulk) node [right]	{VDD}
+	(XX21.D) node [above]	{int\_GATE}
+	(XX21.G) node [left]	{net6}
+	(XX21.S) node [below]	{VSS}
+	(XX21.bulk) node [right]	{VSS}
+	(XX20.D) node [above]	{net2}
+	(XX20.G) node [left]	{CLK}
+	(XX20.S) node [below]	{VSS}
+	(XX20.bulk) node [right]	{VSS}
+	(XX17.D) node [above]	{net1}
+	(XX17.G) node [left]	{SCE}
+	(XX17.S) node [below]	{VSS}
+	(XX17.bulk) node [right]	{VSS}
+	(XX15.D) node [above]	{net6}
+	(XX15.G) node [left]	{CLKb}
+	(XX15.S) node [below]	{net1}
+	(XX15.bulk) node [right]	{VSS}
+	(XX12.D) node [above]	{net7}
+	(XX12.G) node [left]	{int\_GATE}
+	(XX12.S) node [below]	{VSS}
+	(XX12.bulk) node [right]	{VSS}
+	(XX10.D) node [above]	{net5}
+	(XX10.G) node [left]	{int\_GATE}
+	(XX10.S) node [below]	{net2}
+	(XX10.bulk) node [right]	{VSS}
+	(XX8.D) node [above]	{GCLK}
+	(XX8.G) node [left]	{net5}
+	(XX8.S) node [below]	{VSS}
+	(XX8.bulk) node [right]	{VSS}
+	(XX6.D) node [above]	{CLKbb}
+	(XX6.G) node [left]	{CLKb}
+	(XX6.S) node [below]	{VSS}
+	(XX6.bulk) node [right]	{VSS}
+	(XX4.D) node [above]	{net1}
+	(XX4.G) node [left]	{GATE}
+	(XX4.S) node [below]	{VSS}
+	(XX4.bulk) node [right]	{VSS}
+	(XX1.D) node [above]	{CLKb}
+	(XX1.G) node [left]	{CLK}
+	(XX1.S) node [below]	{VSS}
+	(XX1.bulk) node [right]	{VSS}
+	(XX0.D) node [above]	{net6}
+	(XX0.G) node [left]	{CLKbb}
+	(XX0.S) node [below]	{net7}
+	(XX0.bulk) node [right]	{VSS}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+	(XX2.G) |- (XX4.G)
+	(XX13.G) --++(0,2) -| (XX17.G) 
+	(XX13.G) to [short,*-o] ++(-1,0) node [left] {SCE}
+	(XX4.G) to [short,*-o] ++(-1,0) node [left] {GATE}
+	
+	(XX13.D) -- (XX2.S)
+	(XX2.D) -- (XX4.D)
+	coordinate (NET1) at ($(XX2.D)!0.5!(XX4.D)$) 
+ 	(XX17.D) |- (NET1) node [circ] {}
+	
+	(XX15.S) -- (XX18.D)
+	coordinate (TGI) at ($(XX15.S)!0.5!(XX18.D)$)
+	(XX17 |- NET1) node [circ] {} |- (TGI) node [circ] {}
+	(XX15.D) -- (XX18.S)
+	coordinate (TGO) at ($(XX15.D)!0.5!(XX18.S)$)
+	
+	(XX15.G) -| (XX11.G)
+	(XX18.G) -| (XX0.G)	
+	
+	(XX7.G) |- (XX1.G)
+	(XX7.D) -- (XX1.D)
+	(XX16.G) |- (XX6.G)
+	(XX16.D) -- (XX6.D)
+	(XX7.G) to [short,*-o] ++(-5,0) node [left] {CLK}
+	coordinate (CLKB) at ($(XX7.D)!0.5!(XX1.D)$)
+	%(XX6.G) to [short,*-*] (XX15.G)
+	coordinate (CLKB1) at ($(XX16.G)!0.5!(XX6.G)$)
+	(CLKB) to [short,*-*] (CLKB1)%(XX16.G |- CLKB)	
+	($(CLKB)!0.5!(CLKB1)$) node [circ] {} |- (XX15.G) node [circ] {}
+	coordinate (CLKBB) at ($(XX16.D)!0.5!(XX6.D)$)
+	(CLKBB) to [short,*-] ++(1,0) --++(0,-6) -| (XX18.G) node [circ] {}
+	
+	
+	(XX3.D) -- (XX11.S)
+	(XX11.D) -- (XX0.D)
+	(XX0.S) -- (XX12.D)
+	coordinate (NET6) at ($(XX11.D)!0.5!(XX0.D)$)
+	(XX3.G) -- (XX14.G)
+	(XX12.G) -| (XX3.G) node [circ] {}
+	(XX9.G) |- (XX21.G)
+	(NET6) -| (XX9.G) node [circ] {}
+	(TGO) to [short,*-*] (NET6)
+	
+	(XX14.G) node [circ] {} |- (XX10.G) 
+	(XX9.D) -- (XX21.D)
+	coordinate (INT) at ($(XX9.D)!0.5!(XX21.D)$)
+	(INT) node [circ] {}
+	(INT) -| (XX14.G |- XX10.G) node [circ] {}
+	
+	(XX5.G) |- (XX20.G)
+	(XX5.G) to [short, *-] ++(0,4) -| (XX7.G)
+	
+	(XX5.D) -- (XX10.D)
+	(XX10.S) -- (XX20.D)
+	coordinate (NET5) at ($(XX5.D)!0.5!(XX10.D)$)
+	(XX19.G) |- (XX8.G)
+	(NET5) to [short,*-*] (XX19.G |- NET5)
+	(XX14.D) |- (XX5.D |- NET5)
+	
+	
+	(XX19.D) -- (XX8.D)
+	coordinate (GCLK) at ($(XX19.D)!0.5!(XX8.D)$)
+	(GCLK) to [short,*-o] ++(2,0) node [right] {GCLK}
+	
+	
+	(XX3.bulk) to [short,-*] ++(0,0.27)
+	(XX5.bulk) to [short,-*] ++(0,0.27)
+	(XX7.bulk) to [short,-*] ++(0,0.27)
+	(XX9.bulk) to [short,-*] ++(0,0.27)
+	(XX13.bulk) to [short,-*] ++(0,0.27)
+	(XX14.bulk) to [short,-*] ++(0,0.27)
+	(XX16.bulk) to [short,-*] ++(0,0.27)	
+	(XX19.bulk) to [short,-*] ++(0,0.27)
+	(XX2.bulk) --++(0.5,0) node[vdd] {}
+	(XX15.bulk) node[vdd, rotate=180] {}
+	(XX11.bulk) --++(0.5,0) node[vdd] {}
+	
+	
+	
+	(XX1.bulk) to [short,-*] ++(0,-0.27)
+	(XX4.bulk) to [short,-*] ++(0,-0.27)
+	(XX6.bulk) to [short,-*] ++(0,-0.27)
+	(XX8.bulk) to [short,-*] ++(0,-0.27)
+	(XX12.bulk) to [short,-*] ++(0,-0.27)
+	(XX17.bulk) to [short,-*] ++(0,-0.27)
+	(XX20.bulk) to [short,-*] ++(0,-0.27)	
+	(XX21.bulk) to [short,-*] ++(0,-0.27)
+	(XX18.bulk) node [ground, rotate=180] {}
+	(XX0.bulk) --++(0.5,0) node [ground] {}
+	(XX10.bulk) --++(0.5,0) node [ground] {}
+		
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XX19.S) node [vdd] (VDD) {VDD}
+	(XX16.S) node [vdd] (VDD) {VDD}
+	(XX14.S) node [vdd] (VDD) {VDD}
+	(XX13.S) node [vdd] (VDD) {VDD}
+	(XX9.S) node [vdd] (VDD) {VDD}
+	(XX7.S) node [vdd] (VDD) {VDD}
+	(XX5.S) node [vdd] (VDD) {VDD}
+	(XX3.S) node [vdd] (VDD) {VDD}
+	(XX21.S) node [ground] {}
+	(XX20.S) node [ground] {}
+	(XX17.S) node [ground] {}
+	(XX12.S) node [ground] {}
+	(XX8.S) node [ground] {}
+	(XX6.S) node [ground] {}
+	(XX4.S) node [ground] {}
+	(XX1.S) node [ground] {}
+;
+
+\end{circuitikz}

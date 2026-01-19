@@ -1,0 +1,91 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(6, 3) node [nmos, bulk] (XMNB0) {XMNB0} node [above right] {\tiny {w=1.48u l=130.00n}}
+	(2, 0) node [nmos, bulk] (XMNA1) {XMNA1} node [above right] {\tiny {w=1.48u l=130.00n}}
+	(2, 2) node [nmos, bulk] (XMNA0) {XMNA0} node [above right] {\tiny {w=1.48u l=130.00n}}
+	(6, 5) node [pmos, bulk] (XMPB0) {XMPB0} node [above right] {\tiny {w=2.24u l=130.00n}}
+	(6, 8) node [pmos, bulk] (XMPA1) {XMPA1} node [above right] {\tiny {w=2.24u l=130.00n}}
+	(2, 8) node [pmos, bulk] (XMPA0) {XMPA0} node [above right] {\tiny {w=2.24u l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(XMNB0.D) node [above]	{Y}
+	(XMNB0.G) node [left]	{B1}
+	(XMNB0.S) node [below]	{VSS}
+	(XMNB0.bulk) node [right]	{VSS}
+	(XMNA1.D) node [above]	{sndA1}
+	(XMNA1.G) node [left]	{A2}
+	(XMNA1.S) node [below]	{VSS}
+	(XMNA1.bulk) node [right]	{VSS}
+	(XMNA0.D) node [above]	{Y}
+	(XMNA0.G) node [left]	{A1}
+	(XMNA0.S) node [below]	{sndA1}
+	(XMNA0.bulk) node [right]	{VSS}
+	(XMPB0.D) node [below]	{Y}
+	(XMPB0.G) node [left]	{B1}
+	(XMPB0.S) node [above]	{pndA}
+	(XMPB0.bulk) node [right]	{VDD}
+	(XMPA1.D) node [below]	{pndA}
+	(XMPA1.G) node [left]	{A2}
+	(XMPA1.S) node [above]	{VDD}
+	(XMPA1.bulk) node [right]	{VDD}
+	(XMPA0.D) node [below]	{pndA}
+	(XMPA0.G) node [left]	{A1}
+	(XMPA0.S) node [above]	{VDD}
+	(XMPA0.bulk) node [right]	{VDD}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+		
+	(XMPA0.D) |- (XMPA1.D)
+	(XMPB0.S) to [short,-*] (XMPB0.S |- XMPA0.D)
+	(XMPB0.G) |- (XMNB0.G)
+	(XMPB0.G) to [short, *-o] ++(-5,0) node [left] {B1}
+	(XMPB0.D) -- (XMNB0.D)
+	($(XMPB0.D)!0.5!(XMNB0.D)$) to [short,*-o] ++(2,0) node[right]{Y}
+	
+	(XMPA0.G) |- (XMNA0.G)
+	
+	(XMPA1.G) --++(-1,0) --++(0,-7) -| (XMNA1.G)
+	(XMPA0.G) to [short, *-o] ++(-1,0) node [left] {A1}
+	(XMNA1.G) to [short, *-o] ++(-1,0) node [left] {A2}
+	(XMNA0.D) |- ($(XMPB0.D)!0.5!(XMNB0.D)$)
+	(XMNA0.S) -- (XMNA1.D)
+	
+	(XMNB0.bulk) to [short,-*] ++(0,-0.27)
+	(XMNA1.bulk) to [short,-*] ++(0,-0.27)
+	(XMNA0.bulk) --++(0.5,0) node [ground]{}
+	(XMPB0.bulk) --++(0.5,0) node [vdd]{}
+	(XMPA0.bulk) to [short,-*] ++(0,0.27)
+	(XMPA1.bulk) to [short,-*] ++(0,0.27)
+	
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XMNB0.S) node [ground] {}
+	(XMNA1.S) node [ground] {}
+	(XMPA1.S) node [vdd] (VDD) {VDD}
+	(XMPA0.S) node [vdd] (VDD) {VDD}
+;
+
+\end{circuitikz}

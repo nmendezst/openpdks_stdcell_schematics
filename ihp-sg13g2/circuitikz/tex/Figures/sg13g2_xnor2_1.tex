@@ -1,0 +1,132 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(8, 5) node [pmos, bulk] (XP9) {XP9} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(11, 6) node [pmos, bulk] (XP8) {XP8} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(11, 8) node [pmos, bulk] (XP7) {XP7} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(5, 5) node [pmos, bulk] (XP1) {XP1} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(2, 5) node [pmos, bulk] (XP0) {XP0} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(8, 3) node [nmos, bulk] (XN4) {XN4} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(5, 1) node [nmos, bulk] (XN6) {XN6} node [above right] {\tiny {w=640.00n l=130.00n}}
+	(5, 3) node [nmos, bulk] (XN5) {XN5} node [above right] {\tiny {w=640.00n l=130.00n}}
+	(11, 1) node [nmos, bulk] (XN3) {XN3} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(8, 1) node [nmos, bulk] (XN2) {XN2} node [above right] {\tiny {w=740.00n l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(XP9.D) node [below]	{Y}
+	(XP9.G) node [left]	{net1}
+	(XP9.S) node [above]	{VDD}
+	(XP9.bulk) node [right]	{VDD}
+	(XP8.D) node [below]	{Y}
+	(XP8.G) node [left]	{B}
+	(XP8.S) node [above]	{net4}
+	(XP8.bulk) node [right]	{VDD}
+	(XP7.D) node [below]	{net4}
+	(XP7.G) node [left]	{A}
+	(XP7.S) node [above]	{VDD}
+	(XP7.bulk) node [right]	{VDD}
+	(XP1.D) node [below]	{net1}
+	(XP1.G) node [left]	{B}
+	(XP1.S) node [above]	{VDD}
+	(XP1.bulk) node [right]	{VDD}
+	(XP0.D) node [below]	{net1}
+	(XP0.G) node [left]	{A}
+	(XP0.S) node [above]	{VDD}
+	(XP0.bulk) node [right]	{VDD}
+	(XN4.D) node [above]	{Y}
+	(XN4.G) node [left]	{net1}
+	(XN4.S) node [below]	{net3}
+	(XN4.bulk) node [right]	{VSS}
+	(XN6.D) node [above]	{net2}
+	(XN6.G) node [left]	{A}
+	(XN6.S) node [below]	{VSS}
+	(XN6.bulk) node [right]	{VSS}
+	(XN5.D) node [above]	{net1}
+	(XN5.G) node [left]	{B}
+	(XN5.S) node [below]	{net2}
+	(XN5.bulk) node [right]	{VSS}
+	(XN3.D) node [above]	{net3}
+	(XN3.G) node [left]	{B}
+	(XN3.S) node [below]	{VSS}
+	(XN3.bulk) node [right]	{VSS}
+	(XN2.D) node [above]	{net3}
+	(XN2.G) node [left]	{A}
+	(XN2.S) node [below]	{VSS}
+	(XN2.bulk) node [right]	{VSS}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+	
+	
+	(XP0.G) |- (XN6.G)
+	(XP1.G) |- (XN5.G)
+	(XP0.G) to [short,-o] ++(-1,0) node [left] {A}
+	(XN5.G) to [short,*-o] ++(-4,0) node [left] {B}
+	
+	(XP1.D) -- (XN5.D)
+	(XN5.S) -- (XN6.D)
+	coordinate (NET1) at ($(XP1.D)!0.5!(XN5.D)$)
+	(NET1) to [short,*-*] (XP9.G |- NET1)
+	(XP0.D) |- (NET1)
+	
+	(XP9.G) |- (XN4.G)
+	(XP9.D) -- (XN4.D)
+	coordinate (Y) at ($(XP9.D)!0.5!(XN4.D)$)
+	(XN4.S) -- (XN2.D)
+	coordinate (NET3) at ($(XN4.S)!0.5!(XN2.D)$)
+	(XN3.D) |- (NET3) node [circ] {}
+	
+	
+	(XP8.G) |- (XN3.G)
+	(XP8.G) to [short,*-] ++(0,1) -| (XP1.G) node [circ] {}
+	(XN2.G) --++(-1,0) to [short,-*] ++(0,7)
+	(XP7.G) -| (XP0.G) node [circ] {}
+	(XP7.D) -- (XP8.S)
+	(XP8.D) |- (Y) node [circ] {}
+	(XP8.D |- Y) to [short,*-o] ++(2,0) node [right] {Y}
+	
+	(XP0.bulk) to [short,-*] ++(0,0.27)
+	(XP1.bulk) to [short,-*] ++(0,0.27)
+	(XP9.bulk) to [short,-*] ++(0,0.27)		
+	(XP7.bulk) to [short,-*] ++(0,0.27)
+	(XP8.bulk) --++(0.5,0) node [vdd] {}
+	
+	(XN6.bulk) to [short,-*] ++(0,-0.27)
+	(XN2.bulk) to [short,-*] ++(0,-0.27)
+	(XN3.bulk) to [short,-*] ++(0,-0.27)
+	(XN5.bulk) --++(0.5,0) node [ground] {}
+	(XN4.bulk) --++(0.5,0) node [ground] {}
+	
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XP9.S) node [vdd] (VDD) {VDD}
+	(XP7.S) node [vdd] (VDD) {VDD}
+	(XP1.S) node [vdd] (VDD) {VDD}
+	(XP0.S) node [vdd] (VDD) {VDD}
+	(XN6.S) node [ground] {}
+	(XN3.S) node [ground] {}
+	(XN2.S) node [ground] {}
+;
+
+\end{circuitikz}

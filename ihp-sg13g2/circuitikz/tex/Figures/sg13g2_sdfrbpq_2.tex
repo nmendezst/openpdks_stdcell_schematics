@@ -1,0 +1,272 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iftrue
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(2, 0) node [nmos, bulk] (XN22) {XN22} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(5, 0) node [nmos, bulk] (XN21) {XN21} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(8, 0) node [nmos, bulk] (XN19) {XN19} node [above right] {\tiny {w=550.00n l=130.00n}}
+	(11, 0) node [nmos, bulk] (XN18) {XN18} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(14, 0) node [nmos, bulk] (XN17) {XN17} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(17, 0) node [nmos, bulk] (XN23) {XN23} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(20, 0) node [nmos, bulk] (XN13) {XN13} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(23, 0) node [nmos, bulk] (XN14) {XN14} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(26, 0) node [nmos, bulk] (XN15) {XN15} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(29, 0) node [nmos, bulk] (XN16) {XN16} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(32, 0) node [nmos, bulk] (XN6) {XN6} node [above right] {\tiny {w=1.48u l=130.00n}}
+	(35, 0) node [nmos, bulk] (XN0) {XN0} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(38, 0) node [nmos, bulk] (XN1) {XN1} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(41, 0) node [nmos, bulk] (XN7) {XN7} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(44, 0) node [nmos, bulk] (XN8) {XN8} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(2, 1) node [nmos, bulk] (XN9) {XN9} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(5, 1) node [nmos, bulk] (XN10) {XN10} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(8, 1) node [nmos, bulk] (XN11) {XN11} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(11, 1) node [nmos, bulk] (XN2) {XN2} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(14, 1) node [nmos, bulk] (XN12) {XN12} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(17, 1) node [nmos, bulk] (XN3) {XN3} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(20, 1) node [pmos, bulk] (XP22) {XP22} node [above right] {\tiny {w=1.000u l=130.00n}}
+	(23, 1) node [pmos, bulk] (XP21) {XP21} node [above right] {\tiny {w=1.000u l=130.00n}}
+	(26, 1) node [pmos, bulk] (XP20) {XP20} node [above right] {\tiny {w=840.00n l=130.00n}}
+	(29, 1) node [pmos, bulk] (XP18) {XP18} node [above right] {\tiny {w=1.000u l=130.00n}}
+	(32, 1) node [pmos, bulk] (XP17) {XP17} node [above right] {\tiny {w=1.000u l=130.00n}}
+	(35, 1) node [pmos, bulk] (XP23) {XP23} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(38, 1) node [pmos, bulk] (XP14) {XP14} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(41, 1) node [pmos, bulk] (XP15) {XP15} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(44, 1) node [pmos, bulk] (XP16) {XP16} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(2, 2) node [pmos, bulk] (XP6) {XP6} node [above right] {\tiny {w=2.24u l=130.00n}}
+	(5, 2) node [pmos, bulk] (XP7) {XP7} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(8, 2) node [pmos, bulk] (XP0) {XP0} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(11, 2) node [pmos, bulk] (XP1) {XP1} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(14, 2) node [pmos, bulk] (XP8) {XP8} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(17, 2) node [pmos, bulk] (XP9) {XP9} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(20, 2) node [pmos, bulk] (XP10) {XP10} node [above right] {\tiny {w=420.00n l=130.00n}}
+	(23, 2) node [pmos, bulk] (XP2) {XP2} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(26, 2) node [pmos, bulk] (XP3) {XP3} node [above right] {\tiny {w=1.12u l=130.00n}}
+	(29, 2) node [pmos, bulk] (XP11) {XP11} node [above right] {\tiny {w=1.000u l=130.00n}}
+	(32, 2) node [pmos, bulk] (XP12) {XP12} node [above right] {\tiny {w=1.000u l=130.00n}}
+	(35, 2) node [pmos, bulk] (XP13) {XP13} node [above right] {\tiny {w=420.00n l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iftrue
+	(XN22.D) node [above]	{Db}
+	(XN22.G) node [left]	{SCD}
+	(XN22.S) node [below]	{net63}
+	(XN22.bulk) node [right]	{VSS}
+	(XN21.D) node [above]	{Db}
+	(XN21.G) node [left]	{D}
+	(XN21.S) node [below]	{net65}
+	(XN21.bulk) node [right]	{VSS}
+	(XN19.D) node [above]	{SCEb}
+	(XN19.G) node [left]	{SCE}
+	(XN19.S) node [below]	{VSS}
+	(XN19.bulk) node [right]	{VSS}
+	(XN18.D) node [above]	{net63}
+	(XN18.G) node [left]	{SCE}
+	(XN18.S) node [below]	{VSS}
+	(XN18.bulk) node [right]	{VSS}
+	(XN17.D) node [above]	{net65}
+	(XN17.G) node [left]	{SCEb}
+	(XN17.S) node [below]	{VSS}
+	(XN17.bulk) node [right]	{VSS}
+	(XN23.D) node [above]	{Dbb}
+	(XN23.G) node [left]	{Db}
+	(XN23.S) node [below]	{VSS}
+	(XN23.bulk) node [right]	{VSS}
+	(XN13.D) node [above]	{net12}
+	(XN13.G) node [left]	{net2}
+	(XN13.S) node [below]	{VSS}
+	(XN13.bulk) node [right]	{VSS}
+	(XN14.D) node [above]	{net5}
+	(XN14.G) node [left]	{clkneg}
+	(XN14.S) node [below]	{net12}
+	(XN14.bulk) node [right]	{VSS}
+	(XN15.D) node [above]	{net2}
+	(XN15.G) node [left]	{net5}
+	(XN15.S) node [below]	{net11}
+	(XN15.bulk) node [right]	{VSS}
+	(XN16.D) node [above]	{net11}
+	(XN16.G) node [left]	{RESET_B}
+	(XN16.S) node [below]	{VSS}
+	(XN16.bulk) node [right]	{VSS}
+	(XN6.D) node [above]	{Q}
+	(XN6.G) node [left]	{net2}
+	(XN6.S) node [below]	{VSS}
+	(XN6.bulk) node [right]	{VSS}
+	(XN0.D) node [above]	{Dbbb}
+	(XN0.G) node [left]	{Dbb}
+	(XN0.S) node [below]	{net10}
+	(XN0.bulk) node [right]	{VSS}
+	(XN1.D) node [above]	{net10}
+	(XN1.G) node [left]	{RESET_B}
+	(XN1.S) node [below]	{VSS}
+	(XN1.bulk) node [right]	{VSS}
+	(XN7.D) node [above]	{Dbbb}
+	(XN7.G) node [left]	{clkneg}
+	(XN7.S) node [below]	{net6}
+	(XN7.bulk) node [right]	{VSS}
+	(XN8.D) node [above]	{net6}
+	(XN8.G) node [left]	{clkpos}
+	(XN8.S) node [below]	{net9}
+	(XN8.bulk) node [right]	{VSS}
+	(XN9.D) node [above]	{net9}
+	(XN9.G) node [left]	{net4}
+	(XN9.S) node [below]	{net8}
+	(XN9.bulk) node [right]	{VSS}
+	(XN10.D) node [above]	{net8}
+	(XN10.G) node [left]	{RESET_B}
+	(XN10.S) node [below]	{VSS}
+	(XN10.bulk) node [right]	{VSS}
+	(XN11.D) node [above]	{net4}
+	(XN11.G) node [left]	{net6}
+	(XN11.S) node [below]	{VSS}
+	(XN11.bulk) node [right]	{VSS}
+	(XN2.D) node [above]	{clkneg}
+	(XN2.G) node [left]	{CLK}
+	(XN2.S) node [below]	{VSS}
+	(XN2.bulk) node [right]	{VSS}
+	(XN12.D) node [above]	{net4}
+	(XN12.G) node [left]	{clkpos}
+	(XN12.S) node [below]	{net5}
+	(XN12.bulk) node [right]	{VSS}
+	(XN3.D) node [above]	{clkpos}
+	(XN3.G) node [left]	{clkneg}
+	(XN3.S) node [below]	{VSS}
+	(XN3.bulk) node [right]	{VSS}
+	(XP22.D) node [below]	{net64}
+	(XP22.G) node [left]	{SCE}
+	(XP22.S) node [above]	{VDD}
+	(XP22.bulk) node [right]	{VDD}
+	(XP21.D) node [below]	{net62}
+	(XP21.G) node [left]	{SCEb}
+	(XP21.S) node [above]	{VDD}
+	(XP21.bulk) node [right]	{VDD}
+	(XP20.D) node [below]	{SCEb}
+	(XP20.G) node [left]	{SCE}
+	(XP20.S) node [above]	{VDD}
+	(XP20.bulk) node [right]	{VDD}
+	(XP18.D) node [below]	{Db}
+	(XP18.G) node [left]	{SCD}
+	(XP18.S) node [above]	{net62}
+	(XP18.bulk) node [right]	{VDD}
+	(XP17.D) node [below]	{Db}
+	(XP17.G) node [left]	{D}
+	(XP17.S) node [above]	{net64}
+	(XP17.bulk) node [right]	{VDD}
+	(XP23.D) node [below]	{Dbb}
+	(XP23.G) node [left]	{Db}
+	(XP23.S) node [above]	{VDD}
+	(XP23.bulk) node [right]	{VDD}
+	(XP14.D) node [below]	{net5}
+	(XP14.G) node [left]	{clkpos}
+	(XP14.S) node [above]	{net3}
+	(XP14.bulk) node [right]	{VDD}
+	(XP15.D) node [below]	{net2}
+	(XP15.G) node [left]	{net5}
+	(XP15.S) node [above]	{VDD}
+	(XP15.bulk) node [right]	{VDD}
+	(XP16.D) node [below]	{net2}
+	(XP16.G) node [left]	{RESET_B}
+	(XP16.S) node [above]	{VDD}
+	(XP16.bulk) node [right]	{VDD}
+	(XP6.D) node [below]	{Q}
+	(XP6.G) node [left]	{net2}
+	(XP6.S) node [above]	{VDD}
+	(XP6.bulk) node [right]	{VDD}
+	(XP7.D) node [below]	{Dbbb}
+	(XP7.G) node [left]	{clkpos}
+	(XP7.S) node [above]	{net6}
+	(XP7.bulk) node [right]	{VDD}
+	(XP0.D) node [below]	{Dbbb}
+	(XP0.G) node [left]	{RESET_B}
+	(XP0.S) node [above]	{VDD}
+	(XP0.bulk) node [right]	{VDD}
+	(XP1.D) node [below]	{Dbbb}
+	(XP1.G) node [left]	{Dbb}
+	(XP1.S) node [above]	{VDD}
+	(XP1.bulk) node [right]	{VDD}
+	(XP8.D) node [below]	{net7}
+	(XP8.G) node [left]	{net4}
+	(XP8.S) node [above]	{VDD}
+	(XP8.bulk) node [right]	{VDD}
+	(XP9.D) node [below]	{net6}
+	(XP9.G) node [left]	{clkneg}
+	(XP9.S) node [above]	{net7}
+	(XP9.bulk) node [right]	{VDD}
+	(XP10.D) node [below]	{net6}
+	(XP10.G) node [left]	{RESET_B}
+	(XP10.S) node [above]	{VDD}
+	(XP10.bulk) node [right]	{VDD}
+	(XP2.D) node [below]	{clkneg}
+	(XP2.G) node [left]	{CLK}
+	(XP2.S) node [above]	{VDD}
+	(XP2.bulk) node [right]	{VDD}
+	(XP3.D) node [below]	{clkpos}
+	(XP3.G) node [left]	{clkneg}
+	(XP3.S) node [above]	{VDD}
+	(XP3.bulk) node [right]	{VDD}
+	(XP11.D) node [below]	{net4}
+	(XP11.G) node [left]	{net6}
+	(XP11.S) node [above]	{VDD}
+	(XP11.bulk) node [right]	{VDD}
+	(XP12.D) node [below]	{net4}
+	(XP12.G) node [left]	{clkneg}
+	(XP12.S) node [above]	{net5}
+	(XP12.bulk) node [right]	{VDD}
+	(XP13.D) node [below]	{net3}
+	(XP13.G) node [left]	{net2}
+	(XP13.S) node [above]	{VDD}
+	(XP13.bulk) node [right]	{VDD}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XN19.S) node [ground] {}
+	(XN18.S) node [ground] {}
+	(XN17.S) node [ground] {}
+	(XN23.S) node [ground] {}
+	(XN13.S) node [ground] {}
+	(XN16.S) node [ground] {}
+	(XN6.S) node [ground] {}
+	(XN1.S) node [ground] {}
+	(XN10.S) node [ground] {}
+	(XN11.S) node [ground] {}
+	(XN2.S) node [ground] {}
+	(XN3.S) node [ground] {}
+	(XP22.S) node [vdd] (VDD) {VDD}
+	(XP21.S) node [vdd] (VDD) {VDD}
+	(XP20.S) node [vdd] (VDD) {VDD}
+	(XP23.S) node [vdd] (VDD) {VDD}
+	(XP15.S) node [vdd] (VDD) {VDD}
+	(XP16.S) node [vdd] (VDD) {VDD}
+	(XP6.S) node [vdd] (VDD) {VDD}
+	(XP0.S) node [vdd] (VDD) {VDD}
+	(XP1.S) node [vdd] (VDD) {VDD}
+	(XP8.S) node [vdd] (VDD) {VDD}
+	(XP10.S) node [vdd] (VDD) {VDD}
+	(XP2.S) node [vdd] (VDD) {VDD}
+	(XP3.S) node [vdd] (VDD) {VDD}
+	(XP11.S) node [vdd] (VDD) {VDD}
+	(XP13.S) node [vdd] (VDD) {VDD}
+;
+
+\end{circuitikz}

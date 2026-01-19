@@ -1,0 +1,58 @@
+\begin{circuitikz}[american]
+\ctikzset{monopoles/vcc/arrow={Bar[width=5mm]}}
+\ctikzset{tripoles/mos style/arrows}
+\ctikzset{legacy transistors text}
+
+% rm (Computer Modern), sf(Sans Serif), tt(Typewriter)
+\ttfamily[scale=0.6, every node/.style={scale=0.6}]
+
+%||||||||||||||||||||Guidelines||||||||||||||||||||
+
+\iffalse
+\foreach \x in {0,...,25}{
+	\draw [dashed, gray!50] (\x,0) node [red] {\x} -- (\x,25) node [red] {\x};
+}
+\foreach \y in {0,...,25}{
+	\draw [dashed, gray!50] (0,\y) node [red] {\y} -- (25,\y) node [red] {\y};
+}
+\fi
+
+%||||||||||||||||||||Transistors||||||||||||||||||||
+
+\draw
+	(2, 1) node [nmos, bulk] (XX1) {XX1} node [above right] {\tiny {w=740.00n l=130.00n}}
+	(2, 3) node [pmos, bulk] (XX0) {XX0} node [above right] {\tiny {w=1.12u l=130.00n}}
+
+%||||||||||||||||||||Nodes||||||||||||||||||||
+
+\iffalse
+	(XX1.D) node [above]	{Y}
+	(XX1.G) node [left]	{A}
+	(XX1.S) node [below]	{VSS}
+	(XX1.bulk) node [right]	{VSS}
+	(XX0.D) node [below]	{Y}
+	(XX0.G) node [left]	{A}
+	(XX0.S) node [above]	{VDD}
+	(XX0.bulk) node [right]	{VDD}
+\fi
+
+%||||||||||||||||||||Wiring||||||||||||||||||||
+
+	(XX0.G) |- (XX1.G)
+	coordinate (A) at ($(XX0.G)!0.5!(XX1.G)$)
+	(A) to [short,*-o] ++(-1,0) node [left] {A}
+	
+	(XX0.D) -- (XX1.D)
+	coordinate (Y) at ($(XX0.D)!0.5!(XX1.D)$)
+	(Y) to [short,*-o] ++(2,0) node [right] {Y}
+	
+	(XX0.bulk) to [short,-*] ++(0,0.27)	
+	(XX1.bulk) to [short,-*] ++(0,-0.27)
+
+%||||||||||||||||||||Supply||||||||||||||||||||
+
+	(XX1.S) node [ground] {}
+	(XX0.S) node [vdd] (VDD) {VDD}
+;
+
+\end{circuitikz}
